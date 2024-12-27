@@ -3,15 +3,85 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
 :root {
   font-size: 62.5%;
-  --soft-orange: hsl(35, 77%, 62%);
 }
 * {
   box-sizing: border-box;
 }
 body {
-  background-color: green;
-}
-body * {
-  line-height: calc(2px + 2ex + 2px);
-  font-size: 5rem;
+  background-color: lightgray;
+  header {
+    background-color: greenyellow;
+    nav {
+      ul {
+        li {
+          a {
+            text-decoration: none;
+          }
+        }
+      }
+      #notification {
+        width: 2rem;
+        height: 2rem;
+        background-color: blue;
+      }
+      #profile {
+        width: 2rem;
+        height: 2rem;
+        background-color: red;
+      }
+    }
+  }
+  main {
+    #game_highlight {
+    }
+    #game_list {
+      section {
+        &:nth-child(1) {
+          h2 {
+          }
+          p {
+          }
+          select {
+            option {
+            }
+          }
+        }
+        &:nth-child(2) {
+          #filter {
+            div {
+              h2 {
+              }
+              p {
+              }
+            }
+          }
+          #content {
+            .game_card {
+              img {
+                &::after {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  footer {
+    background-color: lightblue;
+    section {
+      p {
+      }
+      ul {
+        li {
+        }
+      }
+      form {
+        input[type="text"] {
+        }
+        input[type="submit"] {
+        }
+      }
+    }
+  }
 }
