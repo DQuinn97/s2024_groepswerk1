@@ -6,31 +6,88 @@
   --dark: rgb(57, 54, 70);
   --seconddark: rgb(79, 69, 87);
   --mediumpurple: rgb(109, 93, 110);
+  --light: rgb(244, 238, 224);
+  --hover: rgb(60, 176, 103);
 }
 * {
   box-sizing: border-box;
+  margin: 0 2rem 0 2rem;
 }
 body {
   background-color: lightgray;
   header {
-    background-color: greenyellow;
+    display: flex;
+    background-color: var(--dark);
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    color: var(--light);
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        &:hover {
+          color: var(--hover);
+        }
+      }
+    }
+
     nav {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      color: var(--light);
       ul {
+        display: flex;
+        flex-direction: row;
         li {
           a {
             text-decoration: none;
+            color: var(--light);
+            padding: 0 1rem;
+            font-size: medium;
+            font-weight: 700;
+            &:hover {
+              color: var(--hover);
+            }
           }
         }
+      }
+      div {
+        padding: 3.5rem;
       }
       #notification {
         width: 2rem;
         height: 2rem;
-        background-color: blue;
+        /* background-color: blue; */
+        color: aliceblue;
+        &:hover {
+          color: var(--hover);
+        }
+      }
+      #notification::before {
+        font-family: icomoon;
+        content: "\e951";
+        font-size: 1.5rem;
       }
       #profile {
-        width: 2rem;
-        height: 2rem;
-        background-color: red;
+        padding: 2px;
+        /* width: 2rem;
+        height: 2rem; */
+        border: solid 2px var(--light);
+        border-radius: 50%;
+        &:hover {
+          color: var(--hover);
+          border-color: var(--hover);
+        }
+      }
+      #profile::before {
+        font-family: icomoon;
+        content: "\e971";
+        font-size: 1.9rem;
       }
     }
   }

@@ -2,8 +2,12 @@
 include_once "includes/css_js.inc.php";
 ?>
 <!DOCTYPE html>
+<link rel="stylesheet" href="css/icons.css">
 
-<header><img src="" alt="logo">
+<header>
+    <div><img src="images/logo70px.webp" alt="logo">
+        <h1>SavePoint</h1>
+    </div>
     <nav>
         <ul>
             <li><a href="#">New Releases</a></li>
