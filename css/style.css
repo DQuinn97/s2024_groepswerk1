@@ -3,6 +3,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
 :root {
   font-size: 62.5%;
+  --dark: rgb(57, 54, 70);
+  --seconddark: rgb(79, 69, 87);
+  --mediumpurple: rgb(109, 93, 110);
 }
 * {
   box-sizing: border-box;
