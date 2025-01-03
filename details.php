@@ -6,14 +6,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$id = @$_GET['id'];
+$id = (int)@$_GET['id'];
 
 if ($id === NULL) {
     header("Location: index.php");
 }
 
-if (isset($_GET['id'])) {
-    if ($id == 0) {
+if (isset($id)) {
+    if (is_string($id) || $id == 0) {
         header("Location: index.php");
     }
 }
