@@ -1,6 +1,5 @@
 <?php
 include_once "includes/css_js.inc.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -50,23 +49,6 @@ include_once "includes/css_js.inc.php";
         </section>
     </main>
     <?php include("includes/footer.inc.php"); ?>
-
-    <!-- <footer>
-        <section>
-            <p>SavePoint Gaming Database</p>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </section>
-        <section>
-            <p>Stay in touch! Subscribe to our Newsletter!</p>
-            <form action=""><input type="text" name="sub_email" id="sub_email"><input type="submit" value="sub_submit" id="sub_submit"></form>
-        </section>
-    </footer> -->
 </body>
 
 </html>
