@@ -9,12 +9,12 @@ include_once "includes/css_js.inc.php";
         <h1>SavePoint</h1>
     </div>
     <nav>
+        <div id="menu-icon"></div>
         <ul>
             <li><a href="#">New Releases</a></li>
             <li><a href="#">Categories</a></li>
             <li><a href="#">My Lists</a></li>
         </ul>
-        <div id="menu-icon"></div>
         <div id="notification"></div>
         <div id="profile"></div>
 

@@ -47,8 +47,7 @@ body {
       display: flex;
       flex-direction: row;
       color: var(--light);
-      gap: 2rem;
-
+      padding: 1rem;
       ul {
         display: flex;
         flex-direction: row;
@@ -67,7 +66,7 @@ body {
         }
       }
       div {
-        padding: 1.5rem;
+        padding: 2.5rem;
       }
       #notification {
         width: 2rem;
@@ -220,15 +219,13 @@ body {
 @media (max-width: 700px) {
   nav ul li {
     display: none;
+    gap: 0;
   }
-  /* #notification,
-  #profile {
-    display: none; 
-  } */
+
   nav #menu-icon:before {
     font-family: "icomoon";
     font-size: 2rem;
-    padding-right: 1rem;
+    padding-right: 0;
     color: var(--white);
     transition: color 0.2s ease 0.05s;
     display: block;
