@@ -87,6 +87,234 @@ include_once "includes/css_js.inc.php";
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
                     </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 1</div>
+                    </div>
                 </section>
         </section>
         </div>
