@@ -194,7 +194,7 @@ body {
     padding: 1rem 2rem;
     min-height: 50px;
     background-color: var(--mediumpurple);
-    color: var(--white);
+    color: var(--dark);
     font-size: 1.5rem;
     font-weight: 400;
     text-align: center;
@@ -215,14 +215,18 @@ body {
       form {
         padding-top: 1rem;
         input[type="text"] {
-          padding: 0.5rem;
-          border-radius: 0.5rem;
+          padding: 0.6rem;
+          border-radius: 2rem;
           border: none;
+          background-color: var(--dark);
+          color: var(--white);
         }
         input[type="submit"] {
-          border-radius: 0.5rem;
-          padding: 0.5rem;
+          border-radius: 2rem;
           border: none;
+          font-size: 1.7rem;
+          background-color: var(--dark);
+          color: var(--white);
           &:hover {
             color: var(--hover);
             border: 2px;
@@ -243,7 +247,7 @@ body {
         font-family: "icomoon";
         font-size: 2rem;
         margin-right: 0.5rem;
-        color: var(--white);
+        color: var(--dark);
         transition: color 0.2s ease 0.05s;
       }
       &.facebook::before {

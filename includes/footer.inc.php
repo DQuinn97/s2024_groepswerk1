@@ -26,7 +26,7 @@ include_once "includes/css_js.inc.php";
         </section>
         <section>
             <p>Stay in touch! Subscribe to our Newsletter!</p>
-            <form action=""><input type="text" name="sub_email" id="sub_email"><input type="submit" value="sub_submit" id="sub_submit"></form>
+            <form action=""><input type="text" name="sub_email" id="sub_email"><input type="submit" value="➼" id="sub_submit"></form>
         </section>
     </footer>
 </body>
