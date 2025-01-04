@@ -21,9 +21,17 @@ if (isset($id)) {
 $game = getGameById($id);
 $release = formatDateTime($game['release_date']);
 $ratings = getRatingsById($id);
+$review = "";
 
 if ($ratings == null) {
-    $ratings = "<h2>There are currently no ratings for this game.</h2>";
+    $review = "<h2>There are currently no ratings for this game.</h2>";
+} else {
+    $ratingValue = $ratings['rating'];
+    $ratingUser = $ratings['user_id'];
+    $ratingReview = $ratings['review'];
+    foreach ($ratings as $rating) {
+        $review = "User $ratingUser gave this game a rating of $ratingValue:<br>$ratingReview<br>";
+    }
 }
 
 
@@ -72,7 +80,7 @@ if ($ratings == null) {
 
         </div>
         <div class="ratings">
-            <p><?= $ratings ?></p>
+            <p><?= $review ?></p>
         </div>
     </main>
     <footer>
