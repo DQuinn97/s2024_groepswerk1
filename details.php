@@ -21,19 +21,6 @@ if (isset($id)) {
 $game = getGameById($id);
 $release = formatDateTime($game['release_date']);
 $ratings = getRatingsById($id);
-$review = "";
-
-if ($ratings == null) {
-    $review = "<h2>There are currently no ratings for this game.</h2>";
-} else {
-    $ratingValue = $ratings['rating'];
-    $ratingUser = $ratings['user_id'];
-    $ratingReview = $ratings['review'];
-    foreach ($ratings as $rating) {
-        $review = "User $ratingUser gave this game a rating of $ratingValue:<br>$ratingReview<br>";
-    }
-}
-
 
 ?>
 <html lang="en" data-lt-installed="true">
@@ -79,9 +66,15 @@ if ($ratings == null) {
                 </p>
 
         </div>
-        <div class="ratings">
-            <p><?= $review ?></p>
-        </div>
+        <tbody>
+            <?php foreach ($ratings as $rating) { ?>
+                <tr>
+                    <td>User <strong><?= $rating['displayname'] ?></strong></td>
+                    <td>gave this game a rating of <strong><?= $rating['rating'] ?></strong>:</td>
+                    <td><i>"<?= $rating['review'] ?>"</i></td><br>
+                </tr>
+            <?php } ?>
+        </tbody>
     </main>
     <footer>
         <section>

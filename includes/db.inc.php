@@ -32,7 +32,7 @@ function getGameById(int $id): array|bool
 
 function getRatingsById(int $id): array|bool
 {
-    $sql = "SELECT games.id, ratings.user_id, ratings.game_id, ratings.rating, ratings.review, users.id FROM ratings
+    $sql = "SELECT games.id, ratings.user_id, ratings.game_id, ratings.rating, ratings.review, users.id, users.displayname FROM ratings
     JOIN games ON ratings.game_id = games.id
     JOIN users ON ratings.user_id = users.id
     WHERE games.id = :id;";
@@ -41,7 +41,7 @@ function getRatingsById(int $id): array|bool
     $stmt->execute([
         ":id" => $id
     ]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function formatDateTime($datetime)
