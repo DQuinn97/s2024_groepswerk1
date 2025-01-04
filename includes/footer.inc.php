@@ -15,13 +15,31 @@ include_once "includes/css_js.inc.php";
         <section>
             <p>SavePoint Gaming Database</p>
             <ul>
-                <li class="facebook">
-                    <a href="https://facebook.com" target="_blank"></a>
+                <li>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                        <i class="icon-facebook2"></i>
+                    </a>
                 </li>
-                <li class="twitter"></li>
-                <li class="instagram"></li>
-                <li class="youtube"></li>
-                <li class="tiktok"></li>
+                <li>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                        <i class="icon-x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <i class="icon-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                        <i class="icon-youtube"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+                        <i class="icon-tiktok"></i>
+                    </a>
+                </li>
             </ul>
         </section>
         <section>

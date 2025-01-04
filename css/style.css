@@ -113,6 +113,7 @@ body {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 8px;
     }
     #game_highlight .highlight-content {
       position: absolute;
@@ -153,8 +154,45 @@ body {
     #game_highlight:hover .highlight-description {
       opacity: 1;
     }
-
+    #game_section {
+      display: grid;
+      /* grid-template-columns: 1fr 3fr; */
+      /* padding: 2rem; */
+      font-size: 1.5rem;
+    }
+    #filters {
+      background-color: var(--light);
+      padding: 1rem;
+      border: none;
+      margin: 1rem 0 1rem 0;
+    }
     #game_list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem;
+      .game_card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .game_card img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+      }
+      .card_title {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(37, 30, 75, 0.603);
+        color: var(--white);
+        text-align: center;
+        font-size: 1.4rem;
+        padding: 0.5rem 0;
+        font-weight: bold;
+      }
       section {
         &:nth-child(1) {
           h2 {
@@ -241,36 +279,24 @@ body {
       flex-direction: row;
       justify-content: space-around;
       padding: 1rem;
-    }
-    ul li {
-      &::before {
-        font-family: "icomoon";
-        font-size: 2rem;
-        margin-right: 0.5rem;
-        color: var(--dark);
-        transition: color 0.2s ease 0.05s;
-      }
-      &.facebook::before {
-        content: "\ea91";
-      }
-      &.twitter::before {
-        content: "\e901";
-      }
-      &.instagram::before {
-        content: "\ea92";
-      }
-      &.youtube::before {
-        content: "\ea9d";
-      }
-      &.tiktok::before {
-        content: "\e902";
-      }
       &:hover::before {
+        color: var(--hover);
+      }
+    }
+    ul li a {
+      font-family: "icomoon";
+      font-size: 2rem;
+      margin-right: 0.5rem;
+      color: var(--dark);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      :hover {
         color: var(--hover);
       }
     }
   }
 }
+
 @media (max-width: 700px) {
   nav ul li {
     display: none;
