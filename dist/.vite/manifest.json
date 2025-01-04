@@ -4,15 +4,15 @@
     "src": "admin/fonts/icomoon.svg"
   },
   "admin/js/index.js": {
-    "file": "assets/index-MWeCYS1i.js",
+    "file": "assets/index-D2UwDeTn.js",
     "name": "index",
     "src": "admin/js/index.js",
     "isEntry": true,
     "css": [
-      "assets/index-BLn8z5fq.css"
+      "assets/index-CPrwYw2y.css"
     ],
     "assets": [
-      "assets/icomoon-C4AV5mt8.svg"
+      "assets/icomoon-DQfcDdS4.svg"
     ]
   },
   "fonts/icomoon.svg": {
@@ -24,15 +24,15 @@
     "src": "images/Chayka-Mario.webp"
   },
   "js/index.js": {
-    "file": "assets/index-DKy608dl.js",
+    "file": "assets/index-CgXrL7vw.js",
     "name": "index",
     "src": "js/index.js",
     "isEntry": true,
     "css": [
-      "assets/index-BlxbxPhw.css"
+      "assets/index-C4KYQi_5.css"
     ],
     "assets": [
-      "assets/icomoon-DQfcDdS4.svg"
+      "assets/icomoon-C4AV5mt8.svg"
     ]
   }
 }
