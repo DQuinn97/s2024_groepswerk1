@@ -17,7 +17,13 @@ include_once "includes/css_js.inc.php";
 <body>
     <?php include("includes/header.inc.php"); ?>
     <main>
-        <section id="game_highlight"></section>
+        <section id="game_highlight">
+            <img src="/images/Chayka-Mario.webp" alt="Game Highlight" />
+            <div class="highlight-content">
+                <h2 class="highlight-title">Game Title</h2>
+                <p class="highlight-description">This is the game description that appears on hover.</p>
+            </div>
+        </section>
         <section id="game_list">
             <section>
                 <h2>Filters</h2>

@@ -18,7 +18,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
   background-color: lightgray;
   header {
     min-height: 50px;
@@ -83,8 +82,6 @@ body {
       }
       #profile {
         padding: 2px;
-        /* width: 2rem;
-        height: 2rem; */
         border: solid 2px var(--light);
         border-radius: 50%;
         &:hover {
@@ -101,8 +98,62 @@ body {
   }
   main {
     flex: 1;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     #game_highlight {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      margin-top: 1rem;
     }
+    #game_highlight img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #game_highlight .highlight-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      color: var(--white);
+      /* background: rgba(122, 124, 126, 0.253); */
+      pointer-events: none;
+    }
+
+    #game_highlight .highlight-title {
+      color: var(--white);
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.911);
+      opacity: 0.8;
+    }
+
+    #game_highlight .highlight-description {
+      font-size: 1.6rem;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    #game_highlight:hover .highlight-content {
+      pointer-events: auto;
+      transition: opacity 0.5s ease-in-out;
+      background: rgba(122, 124, 126, 0.555);
+    }
+
+    #game_highlight:hover .highlight-description {
+      opacity: 1;
+    }
+
     #game_list {
       section {
         &:nth-child(1) {

@@ -19,13 +19,17 @@
     "file": "assets/icomoon-C4AV5mt8.svg",
     "src": "fonts/icomoon.svg"
   },
+  "images/Chayka-Mario.webp": {
+    "file": "assets/Chayka-Mario-B84HEsCU.webp",
+    "src": "images/Chayka-Mario.webp"
+  },
   "js/index.js": {
-    "file": "assets/index-DZqjfXeK.js",
+    "file": "assets/index-DtXfmUJq.js",
     "name": "index",
     "src": "js/index.js",
     "isEntry": true,
     "css": [
-      "assets/index-C68XXimW.css"
+      "assets/index-C6a5vnSt.css"
     ],
     "assets": [
       "assets/icomoon-C4AV5mt8.svg"
