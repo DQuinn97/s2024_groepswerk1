@@ -47,6 +47,8 @@ body {
       display: flex;
       flex-direction: row;
       color: var(--light);
+      gap: 2rem;
+
       ul {
         display: flex;
         flex-direction: row;
@@ -65,7 +67,7 @@ body {
         }
       }
       div {
-        padding: 3.5rem;
+        padding: 1.5rem;
       }
       #notification {
         width: 2rem;
@@ -145,20 +147,37 @@ body {
     color: var(--white);
     font-size: 1.5rem;
     font-weight: 400;
+    text-align: center;
     section {
       padding-top: 0.5rem;
       &:first-child {
       }
       &:last-child {
-        align-items: flex-end;
+        display: inline;
+        text-align: center;
+        padding: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+
         p {
         }
       }
       form {
         padding-top: 1rem;
         input[type="text"] {
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          border: none;
         }
         input[type="submit"] {
+          border-radius: 0.5rem;
+          padding: 0.5rem;
+          border: none;
+          &:hover {
+            color: var(--hover);
+            border: 2px;
+            border-color: var(--hover);
+          }
         }
       }
     }
@@ -178,23 +197,49 @@ body {
         transition: color 0.2s ease 0.05s;
       }
       &.facebook::before {
-        content: "\ea91"; /* Facebook icon Unicode */
+        content: "\ea91";
       }
       &.twitter::before {
-        content: "\e901"; /* Twitter icon Unicode */
+        content: "\e901";
       }
       &.instagram::before {
-        content: "\ea92"; /* Instagram icon Unicode */
+        content: "\ea92";
       }
       &.youtube::before {
-        content: "\ea9d"; /* YouTube icon Unicode */
+        content: "\ea9d";
       }
       &.tiktok::before {
-        content: "\e902"; /* TikTok icon Unicode */
+        content: "\e902";
       }
       &:hover::before {
         color: var(--hover);
       }
+    }
+  }
+}
+@media (max-width: 700px) {
+  nav ul li {
+    display: none;
+  }
+  /* #notification,
+  #profile {
+    display: none; 
+  } */
+  nav #menu-icon:before {
+    font-family: "icomoon";
+    font-size: 2rem;
+    padding-right: 1rem;
+    color: var(--white);
+    transition: color 0.2s ease 0.05s;
+    display: block;
+    content: "\e9bd";
+  }
+}
+
+@media (max-width: 550px) {
+  form {
+    input[type="submit"] {
+      margin-top: 1rem;
     }
   }
 }

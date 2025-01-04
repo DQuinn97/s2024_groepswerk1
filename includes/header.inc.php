@@ -14,7 +14,10 @@ include_once "includes/css_js.inc.php";
             <li><a href="#">Categories</a></li>
             <li><a href="#">My Lists</a></li>
         </ul>
+        <div id="menu-icon"></div>
         <div id="notification"></div>
         <div id="profile"></div>
+
     </nav>
+
 </header>

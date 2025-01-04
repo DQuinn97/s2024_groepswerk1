@@ -16,19 +16,19 @@
     ]
   },
   "fonts/icomoon.svg": {
-    "file": "assets/icomoon-s6AOaiPA.svg",
+    "file": "assets/icomoon-C4AV5mt8.svg",
     "src": "fonts/icomoon.svg"
   },
   "js/index.js": {
-    "file": "assets/index-CtS-8Brz.js",
+    "file": "assets/index-DMR0aPXn.js",
     "name": "index",
     "src": "js/index.js",
     "isEntry": true,
     "css": [
-      "assets/index-UaCUXbqL.css"
+      "assets/index-LJ1SseHI.css"
     ],
     "assets": [
-      "assets/icomoon-s6AOaiPA.svg"
+      "assets/icomoon-C4AV5mt8.svg"
     ]
   }
 }
