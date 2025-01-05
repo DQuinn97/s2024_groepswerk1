@@ -168,13 +168,11 @@ body {
       margin-bottom: 1rem;
       .game_card:hover .card_title {
         transform: scale(
-          1.1
+          1.2
         ); /* Scales the title when hovering over the card */
       }
-
       .game_card {
         position: relative;
-        transition: transform 0.3s ease;
         overflow: hidden;
         .card_title {
           position: absolute;
@@ -189,7 +187,6 @@ body {
           font-weight: bold;
           padding: 0.5rem 0;
           z-index: 1;
-          transition: transform 0.3s ease, font-size 0.3s ease; /* Added smooth scaling */
         }
         :hover {
           transform: scale(1.1);
@@ -216,8 +213,6 @@ body {
         text-align: center;
         font-size: 1.2rem;
         padding: 1rem;
-        z-index: 0;
-        transition: bottom 0.3s ease;
       }
     }
   }
