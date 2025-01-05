@@ -62,258 +62,272 @@ include_once "includes/css_js.inc.php";
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
+                    </div>
+                    <div class="game_card">
+                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
                         <div class="card_title">Game Title 1</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                     <div class="game_card">
                         <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
+                        <div class="card_title">Game Title 2</div>
+                        <div class="game_details">
+                            <p>Platform: PC</p>
+                            <p>Release Year: 2022</p>
+                            <p>Type: Adventure</p>
+                        </div>
                     </div>
                 </section>
         </section>

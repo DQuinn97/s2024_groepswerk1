@@ -15,21 +15,15 @@
   margin: 0 2rem 0 2rem;
 }
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
   background-color: lightgray;
   header {
-    min-height: 50px;
     display: flex;
     background-color: var(--dark);
-    align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
     color: var(--light);
     div {
       display: flex;
-      flex-direction: row;
       align-items: center;
       h1 {
         transition: color 0.2s ease 0.05s;
@@ -40,16 +34,13 @@ body {
         }
       }
     }
-
     nav {
       align-items: center;
       display: flex;
-      flex-direction: row;
       color: var(--light);
       padding: 1rem;
       ul {
         display: flex;
-        flex-direction: row;
         li {
           a {
             transition: color 0.2s ease 0.05s;
@@ -68,7 +59,6 @@ body {
         padding: 2.5rem;
       }
       #notification {
-        width: 2rem;
         height: 2rem;
         color: var(--white);
         &:hover {
@@ -97,26 +87,20 @@ body {
     }
   }
   main {
-    flex: 1;
-    align-items: center;
-    justify-content: center;
     position: relative;
-    display: grid;
-    grid-template: 0fr 0fr 0fr/ 1fr;
+    margin-top: 2rem;
+
     #game_highlight {
       position: relative;
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      margin-top: 1rem;
+      max-height: 400px;
+      max-width: 700px;
+      margin: 0 auto;
     }
     #game_highlight img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-    #game_highlight {
     }
     #game_highlight .highlight-content {
       position: absolute;
@@ -146,8 +130,7 @@ body {
     }
 
     #game_highlight:hover .highlight-content {
-      transition: opacity 0.5s ease-in-out;
-      background: rgba(122, 124, 126, 0.555);
+      background: rgba(121, 112, 161, 0.555);
     }
 
     #game_highlight:hover .highlight-description {
@@ -155,9 +138,6 @@ body {
     }
 
     aside#filters {
-    }
-
-    #game_list {
     }
     select#sort {
       width: 15rem;
@@ -185,69 +165,76 @@ body {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 2rem;
+      margin-bottom: 1rem;
+      .game_card:hover .card_title {
+        transform: scale(
+          1.1
+        ); /* Scales the title when hovering over the card */
+      }
+
       .game_card {
         position: relative;
+        transition: transform 0.3s ease;
         overflow: hidden;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .card_title {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background: #251e4b5b;
+          border-radius: 1rem 1rem 1rem 1rem;
+          color: var(--white);
+          text-align: center;
+          font-size: 1.6rem;
+          font-weight: bold;
+          padding: 0.5rem 0;
+          z-index: 1;
+          transition: transform 0.3s ease, font-size 0.3s ease; /* Added smooth scaling */
+        }
+        :hover {
+          transform: scale(1.1);
+          .game_details {
+            display: block;
+          }
+        }
       }
+
       .game_card img {
         width: 100%;
         height: auto;
         display: block;
         border-radius: 8px;
       }
-      .card_title {
+
+      .game_details {
         position: absolute;
-        bottom: 0;
+        bottom: -100%;
+        left: 0;
         width: 100%;
-        background: rgba(37, 30, 75, 0.603);
+        background: rgba(97, 57, 112, 0.466);
         color: var(--white);
         text-align: center;
-        font-size: 1.4rem;
-        padding: 0.5rem 0;
-        font-weight: bold;
-      }
-      section {
-        &:nth-child(1) {
-          h2 {
-          }
-          p {
-          }
-          select {
-            option {
-            }
-          }
-        }
-        &:nth-child(2) {
-          #filter {
-            div {
-              h2 {
-              }
-              p {
-              }
-            }
-          }
-          #content {
-            .game_card {
-              img {
-                &::after {
-                }
-              }
-            }
-          }
-        }
+        font-size: 1.2rem;
+        padding: 1rem;
+        z-index: 0;
+        transition: bottom 0.3s ease;
       }
     }
   }
+
+  #game_list .game_card:hover .game_details {
+    bottom: 0;
+  }
+
+  /* FOOTER */
   footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
     min-height: 50px;
-    background-color: var(--mediumpurple);
-    color: var(--dark);
+    background-color: var(--seconddark);
+    color: var(--light);
     font-size: 1.5rem;
     font-weight: 400;
     text-align: center;
@@ -302,7 +289,7 @@ body {
       font-family: "icomoon";
       font-size: 2rem;
       margin-right: 0.5rem;
-      color: var(--dark);
+      color: var(--light);
       text-decoration: none;
       transition: color 0.2s ease;
       :hover {
@@ -312,6 +299,7 @@ body {
   }
 }
 
+/* MOBILE  */
 @media (max-width: 700px) {
   nav ul li {
     display: none;
