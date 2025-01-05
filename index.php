@@ -26,10 +26,10 @@ include_once "includes/css_js.inc.php";
         </section>
         <!-- Filters -->
         <select name="sort" id="sort">
-            <option value="rating_desc">highest rating</option>
-            <option value="rating_asc">lowest rating</option>
-            <option value="release_desc">newest</option>
-            <option value="release_asc">oldest</option>
+            <option value="rating_desc">Highest rating</option>
+            <option value="rating_asc">Lowest rating</option>
+            <option value="release_desc">Newest</option>
+            <option value="release_asc">Oldest</option>
             <option value="name_asc">A-Z</option>
             <option value="name_desc">Z-A</option>
         </select>
