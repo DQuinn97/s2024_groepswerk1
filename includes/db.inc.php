@@ -18,7 +18,24 @@ function connectToDB()
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
     return $db;
 }
+function getPlatforms(int $game_id = 0): array|bool
+{
+    $sql = "SELECT platforms.id, platforms.name FROM platforms";
+    if ($game_id) $sql .= " JOIN game_on_platform as gop ON platforms.id = gop.platform_id WHERE gop.game_id = :game_id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute($game_id ? [':game_id' => $game_id] : []);
 
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+function getCategories(int $game_id = 0): array|bool
+{
+    $sql = "SELECT categories.id, categories.name FROM categories";
+    if ($game_id) $sql .= " JOIN game_in_category as gic ON categories.id = gic.category_id WHERE gic.game_id = :game_id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute($game_id ? [':game_id' => $game_id] : []);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 function getGameById(int $id): array|bool
 {
     $sql = "SELECT games.name, games.developer, games.image, games.description, games.publisher, games.release_date FROM games
@@ -28,7 +45,14 @@ function getGameById(int $id): array|bool
     $stmt->execute([
         ":id" => $id
     ]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $game = $stmt->fetch(PDO::FETCH_ASSOC);
+    $p = getPlatforms($game['id']);
+    $game['platforms'] = $p ?: [];
+
+    $c = getCategories($game['id']);
+    $game['categories'] = $c ?: [];
+
+    return $game;
 }
 
 function getRatingsById(int $id): array|bool
@@ -72,5 +96,17 @@ function getAllGames($allGames = 0): array
 
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $games = array_map(function ($game): array {
+        $p = getPlatforms($game['id']);
+        $game['platforms'] = $p ?: [];
+
+        $c = getCategories($game['id']);
+        $game['categories'] = $c ?: [];
+
+        return $game;
+    }, $games);
+
+    return $games;
 }

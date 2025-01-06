@@ -1,5 +1,15 @@
 <?php
 include_once "includes/css_js.inc.php";
+include "includes/db.inc.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+$games = getAllGames();
+$platforms = getPlatforms();
+$categories = getCategories();
+// echo '<pre>';
+// print_r($platforms);
+// echo '<pre>';
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +28,14 @@ include_once "includes/css_js.inc.php";
     <?php include("includes/header.inc.php"); ?>
     <main>
         <section id="game_highlight">
-            <img src="/images/Chayka-Mario.webp" alt="Game Highlight" />
+            <?php
+            $highlight = $games[array_rand($games)];
+            $name = $highlight["name"];
+            ?>
+            <img src="<?= $highlight["image"] ?>" alt="image for highlighted game " .<?= $name ?> />
             <div class="highlight-content">
-                <h2 class="highlight-title">Game Title</h2>
-                <p class="highlight-description">This is the game description that appears on hover.</p>
+                <h2 class="highlight-title"><?= $name ?></h2>
+                <p class="highlight-description"><?= $highlight["description"]; ?></p>
             </div>
         </section>
         <!-- Filters -->
@@ -36,18 +50,36 @@ include_once "includes/css_js.inc.php";
         <section id="game_section">
 
             <aside id="filters">
-                <h2>Filters</h2>
-                <p>Clear all</p>
-                <section id="filter">
-                    <div>
-                        <h2>Category</h2>
-                        <p>*fill using db*</p>
-                    </div>
-                    <div>
-                        <h2>Platform</h2>
-                        <p>*fill using db*</p>
-                    </div>
-                </section>
+                <form method="GET" action="#">
+                    <h2>Filters</h2>
+                    <a href="index.php">clear filters</a>
+                    <section id="filter">
+
+                        <div>
+                            <h2>Categories</h2>
+
+                            <?php foreach ($categories as $category):
+                                $name = $category['name']; ?>
+                                <div class="filter">
+                                    <input type="checkbox" name="categoryFilter[]" id="<?= $name ?>" value="<?= $name ?>">
+                                    <label for="<?= $name ?>"><?= $name ?></label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div>
+                            <h2>Platform</h2>
+                            <?php foreach ($platforms as $platform):
+                                $name = $platform['name']; ?>
+                                <div class="filter">
+                                    <input type="checkbox" name="platformFilter[]" id="<?= $name ?>" value="<?= $name ?>">
+                                    <label for="<?= $name ?>"><?= $name ?></label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <input type="submit" value="Apply Filters" id="filterSubmit" name="filterSubmit">
+
+                    </section>
+                </form>
                 <section id="content">
                     <section class="game_card"><img src="" alt=""></section>
                 </section>
@@ -59,276 +91,28 @@ include_once "includes/css_js.inc.php";
             <div id="games">
                 <section id="game_list">
                     <!-- DIT AANPASSEN NAAR PHP DB data -->
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
+                    <?php foreach ($games as $game):
+                        $name = $game["name"];
+                        $releaseDate = substr($game["release_date"], 0, 4);
+
+                        $game_platforms = join(', ', array_map(function ($g) {
+                            return $g["name"];
+                        }, $game["platforms"]));
+
+                        $game_categories = join(', ', array_map(function ($g) {
+                            return $g["name"];
+                        }, $game["categories"]));
+                    ?>
+                        <div class="game_card">
+                            <img src="<?= $game["image"]; ?>" alt="<?= "image for " . $name; ?>">
+                            <div class="card_title"><?= $name; ?></div>
+                            <div class="game_details">
+                                <p>Release Year: <?= $releaseDate; ?></p>
+                                <p>Platforms: <?= $game_platforms ?></p>
+                                <p>Categories: <?= $game_categories ?></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 1</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
-                    <div class="game_card">
-                        <img src="/images/Chayka-Mario.webp" alt="Game 1">
-                        <div class="card_title">Game Title 2</div>
-                        <div class="game_details">
-                            <p>Platform: PC</p>
-                            <p>Release Year: 2022</p>
-                            <p>Type: Adventure</p>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </section>
         </section>
         </div>

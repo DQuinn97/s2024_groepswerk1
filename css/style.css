@@ -91,10 +91,12 @@ body {
     margin-top: 2rem;
 
     #game_highlight {
+      display: block;
       position: relative;
       max-height: 400px;
       max-width: 700px;
       margin: 0 auto;
+      aspect-ratio: 2/1;
     }
     #game_highlight img {
       display: block;
@@ -137,6 +139,13 @@ body {
       opacity: 1;
     }
 
+    .highlight-description {
+      max-height: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     aside#filters {
     }
     select#sort {
@@ -160,6 +169,11 @@ body {
       border-top-left-radius: 1rem;
       border-bottom-left-radius: 1rem;
       min-width: 150px;
+      #filter {
+        .filter {
+          display: block;
+        }
+      }
     }
     #game_list {
       display: grid;
