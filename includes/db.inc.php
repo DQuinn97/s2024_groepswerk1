@@ -38,7 +38,7 @@ function getCategories(int $game_id = 0): array|bool
 }
 function getGameById(int $id): array|bool
 {
-    $sql = "SELECT games.name, games.developer, games.image, games.description, games.publisher, games.release_date FROM games
+    $sql = "SELECT games.id, games.name, games.developer, games.image, games.description, games.publisher, games.release_date FROM games
     WHERE games.id = :id;";
 
     $stmt = connectToDB()->prepare($sql);
