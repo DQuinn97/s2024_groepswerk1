@@ -15,9 +15,14 @@ include_once "../includes/css_js.inc.php";
 </head>
 
 <body>
+    <?php include("includes/header.inc.php"); ?>
+
     <?= "php works on admin page" ?>
     <p class="icon-location2"></p>
     <img src="images/sample.jpg" alt="">
+
+    <?php include("includes/footer.inc.php"); ?>
+
 </body>
 
 </html>
