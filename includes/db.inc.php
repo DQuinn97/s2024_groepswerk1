@@ -49,3 +49,27 @@ function formatDateTime($datetime)
     $date = new DateTime($datetime);
     return $date->format('d F Y');
 }
+
+function getAllUsers($allUsers = 0): array
+{
+    $sql = "SELECT users.id, users.displayname, users.email, users.dateofbirth, users.status, users.isAdmin, users.created, users.updated FROM users";
+
+    if ($allUsers > 0)
+        $sql .= " WHERE users.id = $allUsers";
+
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getAllGames($allGames = 0): array
+{
+    $sql = "SELECT * FROM games";
+
+    if ($allGames > 0)
+        $sql .= " WHERE games.id = $allGames";
+
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}

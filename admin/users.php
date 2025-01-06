@@ -1,29 +1,14 @@
 <?php
-require("./includes/db.inc.php");
-include_once "includes/css_js.inc.php";
+require("../includes/db.inc.php");
+include_once "../includes/css_js.inc.php";
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$id = (int)@$_GET['id'];
-$game = getGameById($id);
-$release = formatDateTime($game['release_date']);
-$ratings = getRatingsById($id);
-
-if ($id === NULL) {
-    header("Location: index.php");
-}
-
-if (isset($id)) {
-    if (is_string($id) || $id == 0) {
-        header("Location: index.php");
-    }
-}
-
+$users = getAllUsers();
 
 ?>
-<html lang="en" data-lt-installed="true">
 
 <head>
     <link rel="icon" href="https://via.placeholder.com/70x70">
@@ -33,7 +18,7 @@ if (isset($id)) {
     <meta name="description" content="My description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><?= $game['name'] ?> - SavePoint</title>
+    <title>User Management - SavePoint</title>
 </head>
 
 <body>
@@ -49,33 +34,43 @@ if (isset($id)) {
         </nav>
     </header>
 
-
     <main>
-        <div class="container">
-            <h1><?= $game['name']; ?></h2>
-                <!-- <hr /> -->
+        <div class="table-responsive small">
+            <table class="table table-hover table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email Address</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Admin</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                <div class="image"><img src="<?= $game['image'] ?>" alt=""><img></div>
-                <p>Developed by: <?= $game['developer']; ?></p>
-                <p>Published by: <?= $game['publisher']; ?></p>
-                <p>Release date: <?= $release; ?></p>
+                    <?php foreach ($users as $user): ?>
 
-                <h4>About:</h4>
-                <p>
-                    <?= $game['description']; ?>
-                </p>
+                        <tr>
+                            <td><?= $user['id']; ?></td>
+                            <td><?= $user['displayname']; ?></td>
+                            <td><?= $user['email']; ?></td>
+                            <td><?= $user['dateofbirth']; ?></td>
+                            <td><?= $user['status']; ?></td>
+                            <td><?= $user['isAdmin']; ?></td>
+                            <td><?= $user['created']; ?></td>
+                            <td><?= $user['updated']; ?></td>
+                        </tr>
 
-        </div>
-        <tbody>
-            <?php foreach ($ratings as $rating) { ?>
-                <tr>
-                    <td>User <strong><?= $rating['displayname'] ?></strong></td>
-                    <td>gave this game a rating of <strong><?= $rating['rating'] ?></strong>:</td>
-                    <td><i>"<?= $rating['review'] ?>"</i></td><br>
-                </tr>
-            <?php } ?>
-        </tbody>
+                    <?php endforeach; ?>
+
+
+                </tbody>
+            </table>
     </main>
+
     <footer>
         <section>
             <p>SavePoint Gaming Database</p>
