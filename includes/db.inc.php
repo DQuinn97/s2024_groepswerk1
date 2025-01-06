@@ -2,11 +2,12 @@
 
 function connectToDB()
 {
-    $db_host = '127.0.0.1';
-    $db_user = 'root';
-    $db_password = 'root';
-    $db_db = 'savepoint';
-    $db_port = 8889;
+    $env = parse_ini_file('./.env');
+    $db_host = $env["DB_HOST"];
+    $db_user = $env["DB_USER"];
+    $db_password = $env["DB_PASSWORD"];
+    $db_db = $env["DB_DB"];
+    $db_port = $env["DB_PORT"];
 
     try {
         $db = new PDO('mysql:host=' . $db_host . '; port=' . $db_port . '; dbname=' . $db_db, $db_user, $db_password);
