@@ -27,7 +27,7 @@ if (isset($id)) {
 
 <head>
     <link rel="icon" href="https://via.placeholder.com/70x70">
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
 
     <meta charset="utf-8">
     <meta name="description" content="My description">
@@ -37,33 +37,27 @@ if (isset($id)) {
 </head>
 
 <body>
-    <header><img src="" alt="logo">
-        <nav>
-            <ul>
-                <li><a href="#">New Releases</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">My Lists</a></li>
-            </ul>
-            <div id="notification"></div>
-            <div id="profile"></div>
-        </nav>
-    </header>
+    <?php include("includes/header.inc.php"); ?>
 
 
     <main>
-        <div class="container">
+        <div class="gamedetails">
             <h1><?= $game['name']; ?></h2>
                 <!-- <hr /> -->
 
                 <div class="image"><img src="<?= $game['image'] ?>" alt=""><img></div>
-                <p>Developed by: <?= $game['developer']; ?></p>
-                <p>Published by: <?= $game['publisher']; ?></p>
-                <p>Release date: <?= $release; ?></p>
+                <div class="gamedetail">
 
-                <h4>About:</h4>
-                <p>
-                    <?= $game['description']; ?>
-                </p>
+                    <p><span>Developed by:</span> <?= $game['developer']; ?></p>
+                    <p><span>Published by:</span> <?= $game['publisher']; ?></p>
+                    <p><span>Release date:</span> <?= $release; ?></p>
+                </div>
+                <div class="description">
+                    <h4>About:</h4>
+                    <p>
+                        <?= $game['description']; ?>
+                    </p>
+                </div>
 
         </div>
         <tbody>
@@ -76,23 +70,7 @@ if (isset($id)) {
             <?php } ?>
         </tbody>
     </main>
-    <footer>
-        <section>
-            <p>SavePoint Gaming Database</p>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </section>
-        <section>
-            <p>Stay in touch! Subscribe to our Newsletter!</p>
-            <form action=""><input type="text" name="sub_email" id="sub_email"><input type="submit" value="sub_submit" id="sub_submit"></form>
-        </section>
-    </footer>
-
+    <?php include("includes/footer.inc.php"); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

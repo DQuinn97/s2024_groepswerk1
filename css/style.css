@@ -221,6 +221,44 @@ body {
     bottom: 0;
   }
 
+  /* DETAILS PAGE */
+
+  main {
+    text-align: center;
+    display: flex;
+
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50%, 2fr)); */
+    div.gamedetails {
+      h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--seconddark);
+      }
+      .gamedetail {
+        text-align: left;
+        margin-top: 1rem;
+      }
+      span,
+      h4 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--mediumpurple);
+      }
+      p {
+        color: var(--dark);
+        font-size: 1.2rem;
+      }
+      h4 {
+      }
+      div.image {
+      }
+      div.image img {
+        max-width: 70%;
+        /* max-height: 400px; */
+      }
+    }
+  }
   /* FOOTER */
   footer {
     display: flex;
