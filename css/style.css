@@ -235,6 +235,7 @@ body {
         font-size: 3rem;
         font-weight: 700;
         color: var(--seconddark);
+        padding-bottom: 2rem;
       }
       .gamedetail {
         text-align: left;
@@ -242,7 +243,7 @@ body {
       }
       span,
       h4 {
-        font-size: 1.4rem;
+        font-size: 1.7rem;
         font-weight: 700;
         color: var(--mediumpurple);
         text-align: left;
@@ -250,7 +251,7 @@ body {
       }
       p {
         color: var(--dark);
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         text-align: left;
       }
       h4 {
