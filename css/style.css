@@ -13,6 +13,8 @@
 * {
   box-sizing: border-box;
   margin: 0 2rem 0 2rem;
+  font-family: Georgia, "Times New Roman", Times, sans-serif;
+  font-size: 1.2rem;
 }
 body {
   background-color: lightgray;
@@ -226,10 +228,9 @@ body {
   main {
     text-align: center;
     display: flex;
-
-    /* display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50%, 2fr)); */
+    margin: 0 auto;
     div.gamedetails {
+      margin: 2rem 2rem;
       h1 {
         font-size: 3rem;
         font-weight: 700;
@@ -244,10 +245,13 @@ body {
         font-size: 1.4rem;
         font-weight: 700;
         color: var(--mediumpurple);
+        text-align: left;
+        padding-top: 1rem;
       }
       p {
         color: var(--dark);
         font-size: 1.2rem;
+        text-align: left;
       }
       h4 {
       }
