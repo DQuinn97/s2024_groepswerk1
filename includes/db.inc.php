@@ -2,12 +2,18 @@
 
 function connectToDB()
 {
-    $env = parse_ini_file('./.env');
-    $db_host = $env["DB_HOST"];
-    $db_user = $env["DB_USER"];
-    $db_password = $env["DB_PASSWORD"];
-    $db_db = $env["DB_DB"];
-    $db_port = $env["DB_PORT"];
+    // $env = parse_ini_file('./.env');
+    // $db_host = $env["DB_HOST"];
+    // $db_user = $env["DB_USER"];
+    // $db_password = $env["DB_PASSWORD"];
+    // $db_db = $env["DB_DB"];
+    // $db_port = $env["DB_PORT"];
+
+    $db_host = '127.0.0.1';
+    $db_user = 'root';
+    $db_password = 'root';
+    $db_db = 'savepoint';
+    $db_port = '8889';
 
     try {
         $db = new PDO('mysql:host=' . $db_host . '; port=' . $db_port . '; dbname=' . $db_db, $db_user, $db_password);
@@ -38,7 +44,7 @@ function getCategories(int $game_id = 0): array|bool
 }
 function getGameById(int $id): array|bool
 {
-    $sql = "SELECT games.name, games.developer, games.image, games.description, games.publisher, games.release_date FROM games
+    $sql = "SELECT games.id, games.name, games.developer, games.image, games.description, games.publisher, games.release_date FROM games
     WHERE games.id = :id;";
 
     $stmt = connectToDB()->prepare($sql);
@@ -109,4 +115,23 @@ function getAllGames($allGames = 0): array
     }, $games);
 
     return $games;
+}
+
+function insertGame(String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image, String $description, String $publisher, String $release_date): bool|int
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO games(name, developer, ageRestricted, status, image, description, publisher, release_date) VALUES (:name, :developer, :ageRestricted, :status, :image, :description, :publisher, :release_date)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'name' => $name,
+        'developer' => $developer,
+        'ageRestricted' => $ageRestricted,
+        'status' => $status,
+        'image' => $image,
+        'description' => $description,
+        'publisher' => $publisher,
+        'release_date' => $release_date,
+    ]);
+
+    return $db->lastInsertId();
 }
