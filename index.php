@@ -27,17 +27,20 @@ $categories = getCategories();
 <body>
     <?php include("includes/header.inc.php"); ?>
     <main>
-        <section id="game_highlight">
-            <?php
-            $highlight = $games[array_rand($games)];
-            $name = $highlight["name"];
-            ?>
-            <img src="<?= $highlight["image"] ?>" alt="image for highlighted game " .<?= $name ?> />
-            <div class="highlight-content">
-                <h2 class="highlight-title"><?= $name ?></h2>
-                <p class="highlight-description"><?= $highlight["description"]; ?></p>
-            </div>
-        </section>
+        <?php
+        $highlight = $games[array_rand($games)];
+        $name = $highlight["name"];
+        ?>
+        <a href="details.php?id=<?= $highlight["id"] ?>">
+            <section id="game_highlight">
+
+                <img src="<?= $highlight["image"] ?>" alt="image for highlighted game " .<?= $name ?> />
+                <div class="highlight-content">
+                    <h2 class="highlight-title"><?= $name ?></h2>
+                    <p class="highlight-description"><?= $highlight["description"]; ?></p>
+                </div>
+            </section>
+        </a>
         <!-- Filters -->
         <select name="sort" id="sort">
             <option value="rating_desc">Highest rating</option>
@@ -90,28 +93,46 @@ $categories = getCategories();
             <!-- Game Grid Section -->
             <div id="games">
                 <section id="game_list">
-                    <!-- DIT AANPASSEN NAAR PHP DB data -->
                     <?php foreach ($games as $game):
                         $name = $game["name"];
                         $releaseDate = substr($game["release_date"], 0, 4);
-
+                        /*
                         $game_platforms = join(', ', array_map(function ($g) {
                             return $g["name"];
                         }, $game["platforms"]));
-
-                        $game_categories = join(', ', array_map(function ($g) {
+*/
+                        $game_categories = array_map(function ($g) {
                             return $g["name"];
-                        }, $game["categories"]));
+                        }, $game["categories"]);
+                        $rdm_categories = [];
+                        $rdm_categories_keys = array_rand($game_categories, min(5, count($game_categories)));
+                        if (is_array($rdm_categories_keys)) {
+                            foreach (
+                                $rdm_categories_keys as $key
+                            ) {
+                                $rdm_categories[] = $game_categories[$key];
+                            }
+                        } else {
+                            $rdm_categories = $game_categories;
+                        }
+                        $game_categories = array_map(function ($g) {
+                            return "<span class='category_tag'> $g </span>";
+                        }, $rdm_categories);
+                        $game_categories = join('', $game_categories);
+
+
                     ?>
-                        <div class="game_card">
-                            <img src="<?= $game["image"]; ?>" alt="<?= "image for " . $name; ?>">
-                            <div class="card_title"><?= $name; ?></div>
-                            <div class="game_details">
-                                <p>Release Year: <?= $releaseDate; ?></p>
-                                <p>Platforms: <?= $game_platforms ?></p>
-                                <p>Categories: <?= $game_categories ?></p>
+                        <a href="details.php?id=<?= $game["id"] ?>">
+                            <div class="game_card">
+                                <img src="<?= $game["image"]; ?>" alt="<?= "image for " . $name; ?>">
+                                <div class="card_title"><?= $name; ?></div>
+                                <div class="game_details">
+                                    <p>Release Year: <?= $releaseDate; ?></p>
+                                    <!-- <p>Platforms: <?= $game_platforms ?></p> -->
+                                    <div class="category_tags"><?= $game_categories ?></div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     <?php endforeach; ?>
                 </section>
         </section>

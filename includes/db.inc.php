@@ -2,7 +2,7 @@
 
 function connectToDB()
 {
-    $env = parse_ini_file('./.env');
+    $env = parse_ini_file('.env');
     $db_host = $env["DB_HOST"];
     $db_user = $env["DB_USER"];
     $db_password = $env["DB_PASSWORD"];
