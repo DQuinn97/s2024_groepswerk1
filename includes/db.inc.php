@@ -149,3 +149,20 @@ function updateGame(int $id, String $name, String $developer, int $ageRestricted
 
     return $db->lastInsertId();
 }
+
+function insertUser(String $displayname, String $email, String $password, String $dateofbirth, int $status = 1, int $isAdmin = 0): bool|int
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO users(displayname, email, password, dateofbirth, status, isAdmin) VALUES (:displayname, :email, :password, :dateofbirth, :status, :isAdmin)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'displayname' => $displayname,
+        'email' => $email,
+        'password' => md5($password),
+        'dateofbirth' => $dateofbirth,
+        'status' => $status,
+        'isAdmin' => $isAdmin,
+    ]);
+
+    return $db->lastInsertId();
+}

@@ -35,13 +35,20 @@ $users = getAllUsers();
     </header>
 
     <main>
+
+        <div class="mt-3 mb-3 text-end">
+            <a href="create.php">
+                <button type="button" class="btn btn-outline-primary">Create new user</button>
+            </a>
+        </div>
+
         <div class="table-responsive small">
             <table class="table table-hover table-striped table-sm">
                 <thead>
                     <tr>
                         <th scope="col">User Management</th>
                         <th scope="col">#ID</th>
-                        <th scope="col">Username</th>
+                        <th scope="col">Display Name</th>
                         <th scope="col">Email Address</th>
                         <th scope="col">Date of Birth</th>
                         <th scope="col">Status</th>

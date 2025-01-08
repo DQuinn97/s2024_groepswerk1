@@ -109,6 +109,8 @@ if (isset($_POST['formSubmit'])) {
             <h2>Add new game</h2>
             <hr />
 
+            <a href="games.php"><button type="button" class="btn btn-primary">Return</button></a>
+
             <?php if (count($errors) > 0): ?>
                 <div class="alert alert-danger" role="alert">
                     <ul>
