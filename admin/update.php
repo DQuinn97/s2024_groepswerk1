@@ -57,6 +57,7 @@ if (isset($_POST['formUpdate'])) {
 
     if (count($errors) == 0) {
         $success = updateGame(
+            $id,
             $name,
             $developer,
             $ageRestricted,
@@ -64,7 +65,7 @@ if (isset($_POST['formUpdate'])) {
             $image,
             $description,
             $publisher,
-            $release_date,
+            $release_date
         );
         header("Location: games.php");
     }
@@ -104,7 +105,7 @@ if (isset($_POST['formUpdate'])) {
                 </div>
             <?php endif ?>
 
-            <form method="post" action="add.php">
+            <form method="post" action="update.php">
 
                 <input type="hidden" name="id" value="<?= $game['id']; ?>">
 
