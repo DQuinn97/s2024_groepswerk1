@@ -105,7 +105,7 @@ if (isset($_POST['formUpdate'])) {
                 </div>
             <?php endif ?>
 
-            <form method="post" action="update.php">
+            <form method="post" action="update.php?id=<?= $id ?>">
 
                 <input type="hidden" name="id" value="<?= $game['id']; ?>">
 
