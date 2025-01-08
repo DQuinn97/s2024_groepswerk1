@@ -129,3 +129,22 @@ function insertGame(String $name, String $developer, int $ageRestricted = 0, int
 
     return $db->lastInsertId();
 }
+
+function updateGame(String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image, String $description, String $publisher, String $release_date): bool|int
+{
+    $db = connectToDB();
+    $sql = "UPDATE games SET name=:name, developer=:developer, ageRestricted=:ageRestricted, status=:status, image=:image, description=:description, publisher=:publisher, release_date=:release_date WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'name' => $name,
+        'developer' => $developer,
+        'ageRestricted' => $ageRestricted,
+        'status' => $status,
+        'image' => $image,
+        'description' => $description,
+        'publisher' => $publisher,
+        'release_date' => $release_date,
+    ]);
+
+    return $db->lastInsertId();
+}

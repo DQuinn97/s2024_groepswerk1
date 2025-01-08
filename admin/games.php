@@ -45,6 +45,7 @@ $games = getAllGames();
             <table class="table table-hover table-striped table-sm">
                 <thead>
                     <tr>
+                        <th scope="col">Edit Entry</th>
                         <th scope="col">#ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Developer</th>
@@ -63,6 +64,9 @@ $games = getAllGames();
                     <?php foreach ($games as $game): ?>
 
                         <tr>
+                            <td><a href="update.php?id=<?= $game['id'] ?>"><button type="button" class="btn btn-outline-primary">Update</button></a>
+                                <a href="delete.php?id=<?= $game['id'] ?>"><button type=" button" class="btn btn-outline-danger">Delete</button></a>
+                            </td>
                             <td><?= $game['id']; ?></td>
                             <td><?= $game['name']; ?></td>
                             <td><?= $game['developer']; ?></td>
