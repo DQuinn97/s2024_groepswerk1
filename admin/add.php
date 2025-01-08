@@ -33,7 +33,7 @@ if (isset($_POST['formSubmit'])) {
         $errors[] = "Please enter a name for this game.";
     }
 
-    if (strlen($name) > 255) {
+    if (strlen($name) > 63) {
         $errors[] = "Game name is too long.";
     }
 
@@ -41,12 +41,32 @@ if (isset($_POST['formSubmit'])) {
         $errors[] = "Please enter the developer for this game.";
     }
 
+    if (strlen($developer) > 63) {
+        $errors[] = "Developer name is too long.";
+    }
+
+    if (strlen($image) > 150) {
+        $errors[] = "Maximum length for image link is 150 characters.";
+    }
+
+    if (strlen($description) == 0) {
+        $errors[] = "Please enter a description of this game.";
+    }
+
+    if (strlen($description) > 4000) {
+        $errors[] = "Game description is too long.";
+    }
+
     if (strlen($publisher) == 0) {
         $errors[] = "Please enter the publisher for this game.";
     }
 
+    if (strlen($publisher) > 63) {
+        $errors[] = "Publisher name is too long.";
+    }
+
     if (strlen($release_date) == 0) {
-        $errors[] = "Please enter the release date for this game.";
+        $errors[] = "Please enter the release date for this game: YYYY-MM-DD";
     }
 
 

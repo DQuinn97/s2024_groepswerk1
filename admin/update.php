@@ -9,15 +9,6 @@ error_reporting(E_ALL);
 $errors = [];
 $success = false;
 
-// $name = "";
-// $developer = "";
-// $ageRestricted = null;
-// $status = 1;
-// $image = "";
-// $description = "";
-// $publisher = "";
-// $release_date = "";
-
 if (isset($_GET['id'])) {
     $id = (int)@$_GET['id'];
 }
@@ -38,7 +29,7 @@ if (isset($_POST['formUpdate'])) {
         $errors[] = "Please enter a name for this game.";
     }
 
-    if (strlen($name) > 255) {
+    if (strlen($name) > 63) {
         $errors[] = "Game name is too long.";
     }
 
@@ -46,14 +37,33 @@ if (isset($_POST['formUpdate'])) {
         $errors[] = "Please enter the developer for this game.";
     }
 
+    if (strlen($developer) > 63) {
+        $errors[] = "Developer name is too long.";
+    }
+
+    if (strlen($image) > 150) {
+        $errors[] = "Maximum length for image link is 150 characters.";
+    }
+
+    if (strlen($description) == 0) {
+        $errors[] = "Please enter a description of this game.";
+    }
+
+    if (strlen($description) > 4000) {
+        $errors[] = "Game description is too long.";
+    }
+
     if (strlen($publisher) == 0) {
         $errors[] = "Please enter the publisher for this game.";
     }
 
-    if (strlen($release_date) == 0) {
-        $errors[] = "Please enter the release date for this game.";
+    if (strlen($publisher) > 63) {
+        $errors[] = "Publisher name is too long.";
     }
 
+    if (strlen($release_date) == 0) {
+        $errors[] = "Please enter the release date for this game: YYYY-MM-DD";
+    }
 
     if (count($errors) == 0) {
         $success = updateGame(
@@ -105,7 +115,7 @@ if (isset($_POST['formUpdate'])) {
                 </div>
             <?php endif ?>
 
-            <form method="post" action="update.php">
+            <form method="post" action="update.php?id=<?= $id ?>">
 
                 <input type="hidden" name="id" value="<?= $game['id']; ?>">
 

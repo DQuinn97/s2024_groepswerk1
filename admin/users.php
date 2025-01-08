@@ -39,6 +39,7 @@ $users = getAllUsers();
             <table class="table table-hover table-striped table-sm">
                 <thead>
                     <tr>
+                        <th scope="col">User Management</th>
                         <th scope="col">#ID</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email Address</th>
@@ -54,6 +55,9 @@ $users = getAllUsers();
                     <?php foreach ($users as $user): ?>
 
                         <tr>
+                            <td><a href="management.php?id=<?= $user['id'] ?>"><button type="button" class="btn btn-outline-primary">Manage</button></a>
+                                <a href="disable.php?id=<?= $user['id'] ?>"><button type="button" class="btn btn-outline-danger">Disable</button></a>
+                            </td>
                             <td><?= $user['id']; ?></td>
                             <td><?= $user['displayname']; ?></td>
                             <td><?= $user['email']; ?></td>
