@@ -166,3 +166,46 @@ function insertUser(String $displayname, String $email, String $password, String
 
     return $db->lastInsertId();
 }
+
+function getUserById(int $id): array|bool
+{
+    $sql = "SELECT users.id, users.displayname, users.email, users.dateofbirth, users.status, users.isAdmin FROM users
+    WHERE users.id = :id;";
+
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ":id" => $id
+    ]);
+    $game = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $game;
+}
+
+function updateUser(int $id, String $displayname, String $email, String $dateofbirth, int $isAdmin): bool|int
+{
+    $db = connectToDB();
+    $sql = "UPDATE users SET displayname=:displayname, email=:email, dateofbirth=:dateofbirth, isAdmin=:isAdmin WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id,
+        'displayname' => $displayname,
+        'email' => $email,
+        'dateofbirth' => $dateofbirth,
+        'isAdmin' => $isAdmin,
+    ]);
+
+    return $db->lastInsertId();
+}
+
+function toggleUser(int $id, int $status): bool|int
+{
+    $db = connectToDB();
+    $sql = "UPDATE users SET status=:status WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id,
+        'status' => $status
+    ]);
+
+    return $db->lastInsertId();
+}

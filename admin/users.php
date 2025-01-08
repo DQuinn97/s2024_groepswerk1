@@ -62,8 +62,12 @@ $users = getAllUsers();
                     <?php foreach ($users as $user): ?>
 
                         <tr>
-                            <td><a href="management.php?id=<?= $user['id'] ?>"><button type="button" class="btn btn-outline-primary">Manage</button></a>
-                                <a href="disable.php?id=<?= $user['id'] ?>"><button type="button" class="btn btn-outline-danger">Disable</button></a>
+                            <td><a href="manage.php?id=<?= $user['id'] ?>"><button type="button">Manage</button></a>
+                                <a href="disable.php?id=<?= $user['id'] ?>"><button type="button"><?php if ($user['status'] == 1) {
+                                                                                                        echo "Disable";
+                                                                                                    } else {
+                                                                                                        echo "Enable";
+                                                                                                    } ?></button></a>
                             </td>
                             <td><?= $user['id']; ?></td>
                             <td><?= $user['displayname']; ?></td>
