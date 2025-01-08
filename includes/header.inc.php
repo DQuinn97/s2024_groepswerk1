@@ -13,7 +13,7 @@ include_once "includes/css_js.inc.php";
         <ul>
             <li><a href="#">New Releases</a></li>
             <li><a href="#">Categories</a></li>
-            <li><a href="#">My Lists</a></li>
+            <li><a href="mylists.php">My Lists</a></li>
         </ul>
         <div id="notification"></div>
         <div id="profile"></div>
