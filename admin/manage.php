@@ -18,7 +18,7 @@ if (isset($_POST['formUpdate'])) {
     $displayname = $_POST['inputDisplayname'];
     $email = $_POST['inputEmail'];
     $dateofbirth = $_POST['inputDateOfBirth'];
-    $status = 1;
+    $status = $_POST['inputStatus'];
     $isAdmin = $_POST['inputAdmin'];
 
     if (strlen($displayname) == 0) {
@@ -111,6 +111,13 @@ if (isset($_POST['formUpdate'])) {
                     <label for="inputDateOfBirth" class="col-sm-2 col-form-label">Date of Birth: *</label>
                     <div>
                         <input type="text" class="form-control" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="Date of Birth" value="<?= $user['dateofbirth']; ?>">
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="inputStatus" class="col-sm-2 col-form-label">Status: *</label>
+                    <div>
+                        <input type="text" class="form-control" id="inputStatus" name="inputStatus" placeholder="Status" value="<?= $user['status']; ?>">
                     </div>
                 </div>
 
