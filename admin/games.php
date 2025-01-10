@@ -64,8 +64,8 @@ $games = getAllGames();
                     <?php foreach ($games as $game): ?>
 
                         <tr>
-                            <td><a href="update.php?id=<?= $game['id'] ?>"><button type="button" class="btn btn-outline-primary">Update</button></a>
-                                <a href="delete.php?id=<?= $game['id'] ?>"><button type=" button" class="btn btn-outline-danger">Delete</button></a>
+                            <td><a href="update.php?id=<?= $game['id'] ?>"><button type="button">Update</button></a>
+                                <a href="delete.php?id=<?= $game['id'] ?>"><button type="button">Delete</button></a>
                             </td>
                             <td><?= $game['id']; ?></td>
                             <td><?= $game['name']; ?></td>

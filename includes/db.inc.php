@@ -150,6 +150,18 @@ function updateGame(int $id, String $name, String $developer, int $ageRestricted
     return $db->lastInsertId();
 }
 
+function deleteGame(int $id): bool|int
+{
+    $db = connectToDB();
+    $sql = "DELETE FROM games WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id
+    ]);
+
+    return $db->lastInsertId();
+}
+
 function insertUser(String $displayname, String $email, String $password, String $dateofbirth, int $status = 1, int $isAdmin = 0): bool|int
 {
     $db = connectToDB();
