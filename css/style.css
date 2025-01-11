@@ -135,15 +135,41 @@ body {
       #profile {
         padding: 2px;
         border: solid 2px var(--light);
+        margin-left: 1rem;
         border-radius: 50%;
-        &:hover {
-          color: var(--hover);
-          border-color: var(--hover);
-        }
+        cursor: pointer;
         &::before {
           font-family: icomoon;
           content: "\e971";
           font-size: 1.9rem;
+          &:hover {
+            color: var(--hover);
+            border-color: var(--hover);
+          }
+        }
+        section {
+          display: none;
+          position: absolute;
+          right: 0;
+          top: 90px;
+          background-color: var(--mediumpurple);
+          z-index: 3;
+          ul {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--seconddark);
+            li {
+              display: block;
+              width: 100%;
+              min-width: 150px;
+              border: 1px solid var(--seconddark);
+              padding: 1.5rem 0;
+              a {
+                display: inline-block;
+                width: 100%;
+              }
+            }
+          }
         }
       }
     }
@@ -189,7 +215,7 @@ body {
         transition: opacity 0.3s ease-in-out;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         max-height: 100%;
-        max-width: 100%;
+        max-width: 60%;
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -232,7 +258,7 @@ body {
     }
     #game_list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
       margin-bottom: 1rem;
       .game_card:hover .card_title {
@@ -258,7 +284,7 @@ body {
           padding: 0.5rem 0;
           z-index: 1;
         }
-        :hover {
+        &:hover {
           transform: scale(1.1);
           .game_details {
             display: block;
@@ -275,6 +301,7 @@ body {
           font-size: 1.2rem;
           padding: 1rem;
           .category_tags {
+            margin-top: 1rem;
             display: flex;
             gap: 0.5rem;
             justify-content: center;
@@ -424,7 +451,7 @@ body {
     .menu-icon-container {
       display: flex;
     }
-    ul {
+    #navigation {
       position: absolute;
       top: 0;
       margin-top: 90px;
@@ -434,29 +461,29 @@ body {
       justify-content: center;
       align-items: center;
     }
-    #menu-toggle ~ ul li {
+    #menu-toggle ~ #navigation li {
       height: 0;
       margin: 0;
       padding: 0;
       border: 0;
       transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
     }
-    #menu-toggle:checked ~ ul li {
+    #menu-toggle:checked ~ #navigation li {
       border: 1px solid var(--seconddark);
-      height: 2.5em;
-      padding: 0.5em;
+      padding: 1.5em;
+      height: 5rem;
       transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
     }
-    ul > li {
+    #navigation > li {
       display: flex;
       justify-content: center;
       margin: 0;
-      padding: 0.5em 0;
+      padding: 1.5em 0;
       width: 100%;
       color: white;
       background-color: var(--mediumpurple);
     }
-    ul > li:not(:last-child) {
+    #navigation > li:not(:last-child) {
       border-bottom: 1px solid #444;
     }
     #menu-icon:before {
