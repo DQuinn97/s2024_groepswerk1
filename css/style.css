@@ -326,9 +326,11 @@ body {
         display: inline-block;
         font-size: 4rem;
         font-weight: bold;
-        margin-bottom: 2rem;
         padding: 2rem;
         border-bottom: 1px solid var(--mediumpurple);
+      }
+      #error_messages {
+        margin-bottom: 2rem;
       }
       label,
       input {

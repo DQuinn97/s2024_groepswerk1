@@ -57,7 +57,7 @@ if (isset($_POST['register_submit'])) {
         <section id="loginform">
             <form action="user_register.php" method="POST">
                 <h3>Register</h3>
-                <ul id="error_messages"></ul>
+                <ul id="error_messages"><?php foreach ($errors as $error): ?><li><?= $error ?></li><?php endforeach; ?></ul>
                 <label for="register_email">Email *:</label><input type="text" name="register_email">
                 <label for="register_password">Password *:</label>
                 <div id="password_validation"></div>

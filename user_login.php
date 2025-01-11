@@ -22,6 +22,8 @@ if (isset($_POST['login_submit'])) {
 
         header("Location: index.php");
         exit;
+    } else {
+        $errors[] = "Unknown log in credentials...";
     }
 }
 
@@ -44,7 +46,7 @@ if (isset($_POST['login_submit'])) {
         <section id="loginform">
             <form action="user_login.php" method="POST">
                 <h3>Log in</h3>
-                <ul id="error_messages"></ul>
+                <ul id="error_messages"><?php foreach ($errors as $error): ?><li><?= $error ?></li><?php endforeach; ?></ul>
                 <label for="login_email">Email:</label><input type="text" name="login_email">
                 <label for="login_password">Password:</label><input type="text" name="login_password">
                 <input type="submit" value="log in" name="login_submit">

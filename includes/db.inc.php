@@ -170,9 +170,9 @@ function register(String $email, String $password): bool|int
 }
 function checkUser(String $email, String $password): bool | int
 {
-    $sql = "SELECT id FROM users WHERE mail = :mail AND password = :password AND status=1;";
+    $sql = "SELECT id FROM users WHERE email = :email AND password = :password AND status=1;";
     $stmt = connectToDB()->prepare($sql);
-    $stmt->execute([':mail' => $email, ':password' => md5($password)]);
+    $stmt->execute([':email' => $email, ':password' => md5($password)]);
     return $stmt->fetchColumn();
 }
 function checkAdmin(int $UUID): bool
