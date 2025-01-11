@@ -2,7 +2,7 @@
 @import url("./icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
 :root {
-  font-family: sans-serif;
+  font-family: Inter;
   font-size: 62.5%;
   --dark: rgb(57, 54, 70);
   --seconddark: rgb(79, 69, 87);
@@ -10,38 +10,95 @@
   --light: rgb(244, 238, 224);
   --hover: rgb(60, 176, 103);
   --white: white;
+  --error: #ffcccc;
 }
 * {
   box-sizing: border-box;
   margin: 0 2rem 0 2rem;
 }
 body {
+  min-height: 100vh;
   background-color: lightgray;
   header {
+    max-height: 90px;
     display: flex;
     background-color: var(--dark);
     justify-content: space-between;
     padding: 1rem 2rem;
     color: var(--light);
-    div {
-      display: flex;
-      align-items: center;
-      h1 {
-        transition: color 0.2s ease 0.05s;
-        font-size: 2.5rem;
-        font-weight: 700;
-        &:hover {
-          color: var(--hover);
+    a {
+      text-decoration: none;
+      &:visited {
+        color: inherit;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        h1 {
+          transition: color 0.2s ease 0.05s;
+          font-size: 2.5rem;
+          font-weight: 700;
+          &:hover {
+            color: var(--hover);
+          }
         }
       }
     }
+    /* NAVIGATION */
     nav {
       align-items: center;
       display: flex;
       color: var(--light);
       padding: 1rem;
+      #menu-toggle {
+        display: none;
+      }
+      .menu-icon-container {
+        display: none;
+        height: 100%;
+        width: auto;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .menu-icon,
+      .menu-icon:before,
+      .menu-icon:after {
+        display: block;
+        background: white;
+        position: absolute;
+        height: 4px;
+        width: 30px;
+        border-radius: 2px;
+        transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .menu-icon:before {
+        content: "";
+        margin-top: -8px;
+      }
+      .menu-icon:after {
+        content: "";
+        margin-top: 8px;
+      }
+      #menu-toggle:checked + .menu-icon-container .menu-icon::before {
+        margin-top: 0px;
+        transform: rotate(405deg);
+      }
+
+      #menu-toggle:checked + .menu-icon-container .menu-icon {
+        background: rgba(255, 255, 255, 0);
+      }
+
+      #menu-toggle:checked + .menu-icon-container .menu-icon::after {
+        margin-top: 0px;
+        transform: rotate(-405deg);
+      }
+
       ul {
         display: flex;
+        overflow: hidden;
+        z-index: 3;
         li {
           a {
             transition: color 0.2s ease 0.05s;
@@ -50,8 +107,12 @@ body {
             padding: 0 1rem;
             font-size: medium;
             font-weight: 700;
-            &:hover {
+            &:hover,
+            &:visited:hover {
               color: var(--hover);
+            }
+            &:visited {
+              color: inherit;
             }
           }
         }
@@ -59,7 +120,7 @@ body {
       div {
         padding: 2.5rem;
       }
-      #notification {
+      /* #notification {
         height: 2rem;
         color: var(--white);
         &:hover {
@@ -70,7 +131,7 @@ body {
           content: "\e951";
           font-size: 1.5rem;
         }
-      }
+      } */
       #profile {
         padding: 2px;
         border: solid 2px var(--light);
@@ -90,7 +151,7 @@ body {
   main {
     position: relative;
     margin-top: 2rem;
-
+    /* HOMEPAGE */
     #game_highlight {
       display: block;
       position: relative;
@@ -238,11 +299,50 @@ body {
       }
     }
   }
-
   #game_list .game_card:hover .game_details {
     bottom: 0;
   }
 
+  /* LOGIN ETC */
+  #loginform {
+    width: 100%;
+    min-height: auto;
+    justify-content: center;
+    form {
+      min-height: 250px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      min-width: 250px;
+      width: 50%;
+      margin: 3rem auto;
+      gap: 1rem;
+      padding: 3rem;
+      background-color: var(--light);
+      border-radius: 1rem;
+      text-align: center;
+
+      h3 {
+        display: inline-block;
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        border-bottom: 1px solid var(--mediumpurple);
+      }
+      label,
+      input {
+        font-size: 1.5rem;
+      }
+      input {
+        margin-bottom: 2rem;
+        width: auto;
+      }
+      #error_messages {
+        background-color: var(--error);
+      }
+    }
+  }
   /* FOOTER */
   footer {
     display: flex;
@@ -317,20 +417,60 @@ body {
 }
 
 /* MOBILE  */
-@media (max-width: 700px) {
-  nav ul li {
-    display: none;
-    gap: 0;
-  }
-
-  nav #menu-icon:before {
-    font-family: "icomoon";
-    font-size: 2rem;
-    padding-right: 0;
-    color: var(--white);
-    transition: color 0.2s ease 0.05s;
-    display: block;
-    content: "\e9bd";
+@media (max-width: 780px) {
+  nav {
+    .menu-icon-container {
+      display: flex;
+    }
+    ul {
+      position: absolute;
+      top: 0;
+      margin-top: 90px;
+      left: 0;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    #menu-toggle ~ ul li {
+      height: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    #menu-toggle:checked ~ ul li {
+      border: 1px solid var(--seconddark);
+      height: 2.5em;
+      padding: 0.5em;
+      transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    ul > li {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0.5em 0;
+      width: 100%;
+      color: white;
+      background-color: var(--mediumpurple);
+    }
+    ul > li:not(:last-child) {
+      border-bottom: 1px solid #444;
+    }
+    #menu-icon:before {
+      font-family: "icomoon";
+      font-size: 2rem;
+      cursor: pointer;
+      padding-right: 0;
+      color: var(--white);
+      transition: color 0.2s ease 0.05s;
+      display: block;
+      content: "\e9bd";
+      &:hover,
+      &:visited:hover {
+        color: var(--hover);
+      }
+    }
   }
 }
 

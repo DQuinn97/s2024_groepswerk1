@@ -110,3 +110,36 @@ function getAllGames($allGames = 0): array
 
     return $games;
 }
+
+
+/* USER LOGIN / REGISTRATION */
+function checkEmail(String $email): bool
+{
+    $sql = "SELECT id FROM users WHERE email = :email AND status=1;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':email' => $email]);
+    $exists = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $exists ? true : false;
+}
+function register(String $email, String $password): bool|int
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO users(email, password) VALUES (:email, :password);";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([':email' => $email, ':password' => md5($password)]);
+    return $db->lastInsertId();
+}
+function checkUser(String $email, String $password): bool | int
+{
+    $sql = "SELECT id FROM users WHERE mail = :mail AND password = :password AND status=1;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':mail' => $email, ':password' => md5($password)]);
+    return $stmt->fetchColumn();
+}
+function checkAdmin(int $UUID): bool
+{
+    $sql = "SELECT isAdmin FROM users WHERE id = :UUID;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':UUID' => $UUID]);
+    return $stmt->fetchColumn();
+}
