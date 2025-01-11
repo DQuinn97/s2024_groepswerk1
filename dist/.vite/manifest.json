@@ -8,8 +8,12 @@
     "name": "index",
     "src": "admin/js/index.js",
     "isEntry": true,
-    "css": ["assets/index-CPrwYw2y.css"],
-    "assets": ["assets/icomoon-DQfcDdS4.svg"]
+    "css": [
+      "assets/index-CPrwYw2y.css"
+    ],
+    "assets": [
+      "assets/icomoon-DQfcDdS4.svg"
+    ]
   },
   "fonts/icomoon.svg": {
     "file": "assets/icomoon-C4AV5mt8.svg",
@@ -20,7 +24,11 @@
     "name": "index",
     "src": "js/index.js",
     "isEntry": true,
-    "css": ["assets/index-6AJWzVuM.css"],
-    "assets": ["assets/icomoon-C4AV5mt8.svg"]
+    "css": [
+      "assets/index-6AJWzVuM.css"
+    ],
+    "assets": [
+      "assets/icomoon-C4AV5mt8.svg"
+    ]
   }
 }
