@@ -1,9 +1,10 @@
 <?php
 include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+include "includes/funcs.inc.php";
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 $games = getAllGames();
 $platforms = getPlatforms();
 $categories = getCategories();
@@ -37,7 +38,7 @@ $categories = getCategories();
                 <img src="<?= $highlight["image"] ?>" alt="image for highlighted game " .<?= $name ?> />
                 <div class="highlight-content">
                     <h2 class="highlight-title"><?= $name ?></h2>
-                    <p class="highlight-description"><?= $highlight["description"]; ?></p>
+                    <p class="highlight-description"><?= substr($highlight['description'], 0, 300) . '(...)'; ?></p>
                 </div>
             </section>
         </a>
