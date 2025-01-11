@@ -111,6 +111,45 @@ function getAllGames($allGames = 0): array
     return $games;
 }
 
+function insertGame(String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image, String $description, String $publisher, String $release_date): bool|int
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO games(name, developer, ageRestricted, status, image, description, publisher, release_date) VALUES (:name, :developer, :ageRestricted, :status, :image, :description, :publisher, :release_date)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'name' => $name,
+        'developer' => $developer,
+        'ageRestricted' => $ageRestricted,
+        'status' => $status,
+        'image' => $image,
+        'description' => $description,
+        'publisher' => $publisher,
+        'release_date' => $release_date,
+    ]);
+
+    return $db->lastInsertId();
+}
+
+function updateGame(int $id, String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image, String $description, String $publisher, String $release_date): bool|int
+{
+    $db = connectToDB();
+    $sql = "UPDATE games SET name=:name, developer=:developer, ageRestricted=:ageRestricted, status=:status, image=:image, description=:description, publisher=:publisher, release_date=:release_date WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id,
+        'name' => $name,
+        'developer' => $developer,
+        'ageRestricted' => $ageRestricted,
+        'status' => $status,
+        'image' => $image,
+        'description' => $description,
+        'publisher' => $publisher,
+        'release_date' => $release_date
+    ]);
+
+    return $db->lastInsertId();
+}
+
 
 /* USER LOGIN / REGISTRATION */
 function checkEmail(String $email): bool
