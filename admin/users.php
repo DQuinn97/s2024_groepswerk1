@@ -62,7 +62,9 @@ $users = getAllUsers();
                     <?php foreach ($users as $user): ?>
 
                         <tr>
-                            <td><a href="manage.php?id=<?= $user['id'] ?>"><button type="button">Manage</button></a></td>
+                            <td><a href="manage.php?id=<?= $user['id'] ?>"><button type="button">Manage</button></a>
+                                <a href="remove.php?id=<?= $user['id'] ?>"><button type="button">Remove</button>
+                            </td>
                             <td><?= $user['id']; ?></td>
                             <td><?= $user['displayname']; ?></td>
                             <td><?= $user['email']; ?></td>

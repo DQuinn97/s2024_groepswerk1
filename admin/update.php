@@ -19,7 +19,7 @@ if (isset($_POST['formUpdate'])) {
     $name = $_POST['inputName'];
     $developer = $_POST['inputDeveloper'];
     $ageRestricted = $_POST['inputAgeRestricted'];
-    $status = 1;
+    $status = $_POST['inputStatus'];
     $image = $_POST['inputImage'];
     $description = $_POST['inputDescription'];
     $publisher = $_POST['inputPublisher'];
@@ -105,6 +105,8 @@ if (isset($_POST['formUpdate'])) {
             <h2>Update game</h2>
             <hr />
 
+            <a href="games.php"><button type="button" class="btn btn-primary">Return</button></a>
+
             <?php if (count($errors) > 0): ?>
                 <div class="alert alert-danger" role="alert">
                     <ul>
@@ -144,6 +146,13 @@ if (isset($_POST['formUpdate'])) {
                     <label for="inputDescription" class="col-sm-2 col-form-label">Description:</label>
                     <div>
                         <textarea name="inputDescription" id="inputDescription" style="width: 100%"><?= $game['description']; ?></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="inputStatus" class="col-sm-2 col-form-label">Status: *</label>
+                    <div>
+                        <input type="text" class="form-control" id="inputStatus" name="inputStatus" placeholder="Status" value="<?= $game['status']; ?>">
                     </div>
                 </div>
 

@@ -38,7 +38,7 @@ function getCategories(int $game_id = 0): array|bool
 }
 function getGameById(int $id): array|bool
 {
-    $sql = "SELECT games.id, games.name, games.developer, games.image, games.description, games.publisher, games.release_date FROM games
+    $sql = "SELECT games.id, games.name, games.developer, games.ageRestricted, games.status, games.image, games.description, games.publisher, games.release_date FROM games
     WHERE games.id = :id;";
 
     $stmt = connectToDB()->prepare($sql);
@@ -154,6 +154,18 @@ function deleteGame(int $id): bool|int
 {
     $db = connectToDB();
     $sql = "DELETE FROM games WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id
+    ]);
+
+    return $db->lastInsertId();
+}
+
+function deleteUser(int $id): bool|int
+{
+    $db = connectToDB();
+    $sql = "DELETE FROM users WHERE id = :id";
     $stmt = $db->prepare($sql);
     $stmt->execute([
         'id' => $id
