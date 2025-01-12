@@ -38,7 +38,7 @@ function getCategories(int $game_id = 0): array|bool
 }
 function getGameById(int $id): array|bool
 {
-    $sql = "SELECT games.id, games.name, games.developer, games.image, games.description, games.publisher, games.release_date FROM games
+    $sql = "SELECT games.id, games.name, games.developer, games.ageRestricted, games.status, games.image, games.description, games.publisher, games.release_date FROM games
     WHERE games.id = :id;";
 
     $stmt = connectToDB()->prepare($sql);
@@ -145,6 +145,78 @@ function updateGame(int $id, String $name, String $developer, int $ageRestricted
         'description' => $description,
         'publisher' => $publisher,
         'release_date' => $release_date
+    ]);
+
+    return $db->lastInsertId();
+}
+
+function deleteGame(int $id): bool|int
+{
+    $db = connectToDB();
+    $sql = "DELETE FROM games WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id
+    ]);
+
+    return $db->lastInsertId();
+}
+
+function deleteUser(int $id): bool|int
+{
+    $db = connectToDB();
+    $sql = "DELETE FROM users WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id
+    ]);
+
+    return $db->lastInsertId();
+}
+
+function insertUser(String $displayname, String $email, String $password, String $dateofbirth, int $status = 1, int $isAdmin = 0): bool|int
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO users(displayname, email, password, dateofbirth, status, isAdmin) VALUES (:displayname, :email, :password, :dateofbirth, :status, :isAdmin)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'displayname' => $displayname,
+        'email' => $email,
+        'password' => md5($password),
+        'dateofbirth' => $dateofbirth,
+        'status' => $status,
+        'isAdmin' => $isAdmin,
+    ]);
+
+    return $db->lastInsertId();
+}
+
+function getUserById(int $id): array|bool
+{
+    $sql = "SELECT users.id, users.displayname, users.email, users.dateofbirth, users.status, users.isAdmin FROM users
+    WHERE users.id = :id;";
+
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ":id" => $id
+    ]);
+    $game = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $game;
+}
+
+function updateUser(int $id, String $displayname, String $email, String $dateofbirth, int $status, int $isAdmin): bool|int
+{
+    $db = connectToDB();
+    $sql = "UPDATE users SET displayname=:displayname, email=:email, dateofbirth=:dateofbirth, status=:status, isAdmin=:isAdmin WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id,
+        'displayname' => $displayname,
+        'email' => $email,
+        'dateofbirth' => $dateofbirth,
+        'status' => $status,
+        'isAdmin' => $isAdmin,
     ]);
 
     return $db->lastInsertId();
