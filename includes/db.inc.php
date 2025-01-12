@@ -76,6 +76,15 @@ function getRatingsById(int $id): array|bool
     ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getAvgRatingById(int $id)
+{
+    $sql = "SELECT AVG(rating) as rating FROM ratings WHERE game_id = :id";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ":id" => $id
+    ]);
+    return $stmt->fetchColumn();
+}
 
 function formatDateTime($datetime)
 {
@@ -96,12 +105,33 @@ function getAllUsers($allUsers = 0): array
 }
 
 
-function getAllGames($allGames = 0): array
+function getAllGames(bool $ageRestrict = null, int $startAt = null, int $perPage = 20, String $sort = "id", String $order = "ASC", array $categoryfilters = [], array $platformfilters = []): array
 {
-    $sql = "SELECT * FROM games";
+    $target = "games";
 
-    if ($allGames > 0)
-        $sql .= " WHERE games.id = $allGames";
+    if (count($categoryfilters) || count($platformfilters)) {
+        if (count($categoryfilters) && !count($platformfilters)) {
+            $categoryfilter = join(',', $categoryfilters);
+            $target = "(SELECT games.* FROM games JOIN game_in_category ON game_id = games.id AND category_id IN (" . $categoryfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($categoryfilters) . ")";
+        } elseif (!count($categoryfilters) && count($platformfilters)) {
+            $platformfilter = join(',', $platformfilters);
+            $target = "(SELECT games.* FROM games JOIN game_on_platform ON game_id = games.id AND platform_id IN (" . $platformfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($platformfilters) . ")";
+        } else {
+            $categoryfilter = join(',', $categoryfilters);
+            $platformfilter = join(',', $platformfilters);
+            $target = "(SELECT games.* FROM (SELECT games.* FROM games JOIN game_in_category ON game_id = games.id AND category_id IN (" . $categoryfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($categoryfilters) . ") AS games JOIN game_on_platform ON game_id = games.id AND platform_id IN (" . $platformfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($platformfilters) . ")";
+        }
+    }
+    $sql = "SELECT * FROM " . $target . " AS games";
+    print_r($sql);
+
+    if ($ageRestrict == true) {
+        $sql .= " WHERE ageRestricted = false";
+    }
+    $sql .= " ORDER BY " . $sort . " " . $order;
+    if ($startAt !== null) {
+        $sql .= " LIMIT " . $startAt . ',' . $perPage;
+    }
 
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute();
@@ -118,6 +148,13 @@ function getAllGames($allGames = 0): array
     }, $games);
 
     return $games;
+}
+function getAllGamesCount(): int
+{
+    $sql = "SELECT COUNT(*) as total FROM games";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchColumn();
 }
 
 function insertGame(String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image, String $description, String $publisher, String $release_date): bool|int
@@ -174,17 +211,6 @@ function deleteGame(int $id): bool|int
 function deleteUser(int $id): int
 {
     $db = connectToDB();
-    // $sql = "DELETE FROM user_owns_platform WHERE user_id = :id";
-    // $stmt = $db->prepare($sql);
-    // $stmt->execute($options);
-    // $deletedRows += $stmt->rowCount();
-
-    // $sql = "DELETE FROM ratings WHERE user_id = :id";
-    // $stmt = $db->prepare($sql);
-    // $stmt->execute($options);
-    // $deletedRows += $stmt->rowCount();
-
-
 
     $sql = "DELETE FROM users WHERE id = :id";
     $stmt = $db->prepare($sql);
@@ -310,5 +336,12 @@ function checkPassword(int $UUID, String $password): bool
     $sql = "SELECT id FROM users WHERE id = :UUID AND password = :password;";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([':UUID' => $UUID, ':password' => md5($password)]);
+    return $stmt->fetchColumn();
+}
+function checkAge(int $UUID): bool
+{
+    $sql = "SELECT id FROM users WHERE id = :UUID AND TIMESTAMPDIFF(YEAR, dateofbirth, NOW()) > 18";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':UUID' => $UUID]);
     return $stmt->fetchColumn();
 }
