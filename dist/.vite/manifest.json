@@ -8,19 +8,27 @@
     "name": "index",
     "src": "admin/js/index.js",
     "isEntry": true,
-    "css": ["assets/index-CPrwYw2y.css"],
-    "assets": ["assets/icomoon-DQfcDdS4.svg"]
+    "css": [
+      "assets/index-CPrwYw2y.css"
+    ],
+    "assets": [
+      "assets/icomoon-DQfcDdS4.svg"
+    ]
   },
   "fonts/icomoon.svg": {
     "file": "assets/icomoon-C4AV5mt8.svg",
     "src": "fonts/icomoon.svg"
   },
   "js/index.js": {
-    "file": "assets/index-Ard5ZTsL.js",
+    "file": "assets/index-DqYphrY5.js",
     "name": "index",
     "src": "js/index.js",
     "isEntry": true,
-    "css": ["assets/index-6AJWzVuM.css"],
-    "assets": ["assets/icomoon-C4AV5mt8.svg"]
+    "css": [
+      "assets/index-GCXz0p_z.css"
+    ],
+    "assets": [
+      "assets/icomoon-C4AV5mt8.svg"
+    ]
   }
 }

@@ -182,3 +182,10 @@ function checkAdmin(int $UUID): bool
     $stmt->execute([':UUID' => $UUID]);
     return $stmt->fetchColumn();
 }
+function checkPassword(int $UUID, String $password): bool
+{
+    $sql = "SELECT id FROM users WHERE id = :UUID AND password = :password;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':UUID' => $UUID, ':password' => md5($password)]);
+    return $stmt->fetchColumn();
+}

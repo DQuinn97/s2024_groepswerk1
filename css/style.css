@@ -11,11 +11,12 @@
   --hover: rgb(60, 176, 103);
   --white: white;
   --error: #ffcccc;
+  --error-dark: #ff2121;
 }
 * {
   box-sizing: border-box;
   margin: 0 2rem 0 2rem;
-  font-family: Georgia, "Times New Roman", Times, sans-serif;
+  font-family: Inter;
   font-size: 1.2rem;
 }
 body {
@@ -327,17 +328,7 @@ body {
         border-radius: 8px;
       }
     }
-  }
-  #game_list .game_card:hover .game_details {
-    bottom: 0;
-  }
-
-  /* DETAILS PAGE */
-
-  main {
-    text-align: center;
-    display: flex;
-    margin: 0 auto;
+    /* DETAIL PAGE */
     div.gamedetails {
       margin: 2rem 2rem;
       h1 {
@@ -373,8 +364,18 @@ body {
       }
     }
   }
+  #game_list .game_card:hover .game_details {
+    bottom: 0;
+  }
+
   /* LOGIN ETC */
-  #loginform {
+  #loginform,
+  #userprofile_edit {
+    * span {
+      font-size: 1rem;
+      font-weight: 100;
+      padding-left: 1rem;
+    }
     width: 100%;
     min-height: auto;
     justify-content: center;
@@ -392,18 +393,24 @@ body {
       border-radius: 1rem;
       text-align: center;
 
-      h3 {
+      h3,
+      h4 {
         display: inline-block;
         font-size: 4rem;
         font-weight: bold;
         padding: 2rem;
         border-bottom: 1px solid var(--mediumpurple);
       }
+      h4 {
+        font-size: 1.7rem;
+        border-bottom: none;
+      }
       #error_messages {
         margin-bottom: 2rem;
       }
       label,
-      input {
+      input,
+      p {
         font-size: 1.5rem;
       }
       input {
@@ -412,6 +419,33 @@ body {
       }
       #error_messages {
         background-color: var(--error);
+      }
+      input[type="text"],
+      input[type="date"] {
+        padding: 0.6rem;
+        border-radius: 2rem;
+        border: none;
+        background-color: var(--white);
+      }
+      input[type="submit"] {
+        border-radius: 2rem;
+        padding: 0.5rem;
+        border: none;
+        font-size: 1.7rem;
+        background-color: var(--mediumpurple);
+        color: var(--white);
+        &#profile_delete {
+          background-color: var(--error-dark);
+        }
+        &:hover {
+          background-color: var(--dark);
+          color: var(--hover);
+          border: 2px;
+          border-color: var(--white);
+          &#profile_delete {
+            background-color: var(--error);
+          }
+        }
       }
     }
   }
@@ -443,7 +477,7 @@ body {
       }
       form {
         padding-top: 1rem;
-        input[type="text"] {
+        /* input[type="text"] {
           padding: 0.6rem;
           border-radius: 2rem;
           border: none;
@@ -461,7 +495,7 @@ body {
             border: 2px;
             border-color: var(--hover);
           }
-        }
+        } */
       }
     }
     section ul {

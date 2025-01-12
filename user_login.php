@@ -47,9 +47,9 @@ if (isset($_POST['login_submit'])) {
             <form action="user_login.php" method="POST">
                 <h3>Log in</h3>
                 <ul id="error_messages"><?php foreach ($errors as $error): ?><li><?= $error ?></li><?php endforeach; ?></ul>
-                <label for="login_email">Email:</label><input type="text" name="login_email">
-                <label for="login_password">Password:</label><input type="text" name="login_password">
-                <input type="submit" value="log in" name="login_submit">
+                <label for="login_email">Email:</label><input type="text" id="login_email" name="login_email">
+                <label for="login_password">Password:</label><input type="text" id="login_password" name="login_password">
+                <input type="submit" value="log in" id="login_submit" name="login_submit">
                 <a href="user_register.php">Need an account? Register now!</a>
             </form>
         </section>
