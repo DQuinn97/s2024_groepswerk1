@@ -28,9 +28,12 @@ $users = getAllUsers();
 
         <main>
 
-            <div class="mt-3 mb-3 text-end">
+            <div class="mt-3 mb-3">
+                <a href="index.php">
+                    <button type="button" class="btn btn-primary">Return</button>
+                </a>
                 <a href="create.php">
-                    <button type="button" class="btn btn-outline-primary">Create new user</button>
+                    <button type="button" class="btn btn-outline-primary">Create New User</button>
                 </a>
             </div>
 

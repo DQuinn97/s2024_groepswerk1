@@ -27,7 +27,10 @@ $games = getAllGames();
     <div class="container">
         <main>
 
-            <div class="mt-3 mb-3 text-end">
+            <div class="mt-3 mb-3">
+                <a href="index.php">
+                    <button type="button" class="btn btn-primary">Return</button>
+                </a>
                 <a href="add.php">
                     <button type="button" class="btn btn-outline-primary">Add new game</button>
                 </a>
