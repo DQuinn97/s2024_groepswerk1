@@ -2,14 +2,15 @@
 include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 session_start();
 $UUID = @$_SESSION['UUID'];
 $adult = false;
 if ($UUID) checkAge('UUID');
+
+if (isset($_POST['paginationSubmit'])) {
+    $_POST = unserialize($_POST['postData']);
+}
 
 $perPage = 20;
 $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -36,9 +37,6 @@ $allGames = getAllGames();
 $highlight = $allGames[array_rand($allGames)];
 $name = $highlight["name"];
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -162,7 +160,21 @@ echo '</pre>';
                             </div>
                         </a>
                     <?php endforeach; ?>
+
                 </section>
+                <div class="pagination">
+                    <span>
+                        <form action="index.php?page=<?= $page - 1 ?>" method="POST">
+                            <input type="hidden" name="postData" value="<?= htmlspecialchars(serialize($_POST)); ?>">
+                            <input type="submit" name="paginationSubmit" value="&lt; previous">
+                        </form>
+                    </span><span>
+                        <form action="index.php?page=<?= $page + 1 ?>" method="POST">
+                            <input type="hidden" name="postData" value="<?= htmlspecialchars(serialize($_POST)); ?>">
+                            <input type="submit" name="paginationSubmit" value="next &gt;">
+                        </form>
+                    </span>
+                </div>
         </section>
         </div>
 

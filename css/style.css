@@ -364,6 +364,28 @@ body {
         border-radius: 8px;
       }
     }
+    .pagination {
+      margin: 2rem;
+      display: flex;
+      span {
+        form {
+          input {
+            background-color: var(--mediumpurple);
+            color: var(--light);
+            padding: 1rem;
+            border-radius: 1rem;
+          }
+        }
+
+        &:nth-of-type(1) {
+          margin-left: 20px;
+        }
+        &:nth-of-type(2) {
+          margin-left: auto;
+          margin-right: 20px;
+        }
+      }
+    }
     /* DETAIL PAGE */
     div.gamedetails {
       margin: 2rem 2rem;
