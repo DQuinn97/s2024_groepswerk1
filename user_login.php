@@ -6,8 +6,9 @@ include "includes/funcs.inc.php";
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
-
-
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
 requiredLoggedOut();
 $errors = [];
 
@@ -16,6 +17,9 @@ if (isset($_POST['login_submit'])) {
     if (!strlen($_POST['login_password'])) $errors[] = "Please enter password...";
 
     $UUID = checkUser($_POST['login_email'], $_POST['login_password']);
+    echo '<pre>';
+    print_r(md5($_POST['login_password']));
+    echo '</pre>';
     if ($UUID) {
         logIn($UUID);
         $_SESSION['messages'][] = ['type' => 'log', 'content' => 'logged in on ' . date("d-m-Y")];
@@ -23,7 +27,7 @@ if (isset($_POST['login_submit'])) {
         header("Location: index.php");
         exit;
     } else {
-        $errors[] = "Unknown log in credentials...";
+        $errors[] = "Wrong password...";
     }
 }
 

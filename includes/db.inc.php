@@ -27,6 +27,14 @@ function getPlatforms(int $game_id = 0): array|bool
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getUserPlatforms(int $UUID): array|bool
+{
+    $sql = "SELECT platforms.id, platforms.name FROM platforms JOIN user_owns_platform as uop ON platforms.id = uop.platform_id WHERE uop.user_id = :UUID;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':UUID' => $UUID]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 function getCategories(int $game_id = 0): array|bool
 {
     $sql = "SELECT categories.id, categories.name FROM categories";
@@ -86,6 +94,7 @@ function getAllUsers($allUsers = 0): array
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 function getAllGames($allGames = 0): array
 {
@@ -162,16 +171,29 @@ function deleteGame(int $id): bool|int
     return $db->lastInsertId();
 }
 
-function deleteUser(int $id): bool|int
+function deleteUser(int $id): int
 {
     $db = connectToDB();
+    // $sql = "DELETE FROM user_owns_platform WHERE user_id = :id";
+    // $stmt = $db->prepare($sql);
+    // $stmt->execute($options);
+    // $deletedRows += $stmt->rowCount();
+
+    // $sql = "DELETE FROM ratings WHERE user_id = :id";
+    // $stmt = $db->prepare($sql);
+    // $stmt->execute($options);
+    // $deletedRows += $stmt->rowCount();
+
+
+
     $sql = "DELETE FROM users WHERE id = :id";
     $stmt = $db->prepare($sql);
     $stmt->execute([
         'id' => $id
     ]);
+    $deletedRows = $stmt->rowCount();
 
-    return $db->lastInsertId();
+    return $deletedRows;
 }
 
 function insertUser(String $displayname, String $email, String $password, String $dateofbirth, int $status = 1, int $isAdmin = 0): bool|int
@@ -200,26 +222,55 @@ function getUserById(int $id): array|bool
     $stmt->execute([
         ":id" => $id
     ]);
-    $game = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    return $game;
+    return $user;
 }
 
-function updateUser(int $id, String $displayname, String $email, String $dateofbirth, int $status, int $isAdmin): bool|int
+function updateUser(int $id, String $displayname, String $email, String $dateofbirth, int $status, int $isAdmin, String $password = null): bool|int
 {
     $db = connectToDB();
-    $sql = "UPDATE users SET displayname=:displayname, email=:email, dateofbirth=:dateofbirth, status=:status, isAdmin=:isAdmin WHERE id = :id";
-    $stmt = $db->prepare($sql);
-    $stmt->execute([
+    $optional = "";
+    $options = [
         'id' => $id,
-        'displayname' => $displayname,
+        'displayname' => $displayname ?: null,
         'email' => $email,
-        'dateofbirth' => $dateofbirth,
+        'dateofbirth' => $dateofbirth ?: null,
         'status' => $status,
         'isAdmin' => $isAdmin,
+    ];
+    if ($password !== null) {
+        $optional = " password=:password,";
+        $options['password'] = md5($password);
+    }
+
+    $sql = "UPDATE users SET displayname=:displayname," . $optional . " email=:email, dateofbirth=:dateofbirth, status=:status, isAdmin=:isAdmin, updated=CURRENT_TIMESTAMP WHERE id = :id";
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute($options);
+
+    return $stmt->rowCount();
+}
+function updateUserPlatforms(int $UUID, array $platforms)
+{
+    $db = connectToDB();
+    $sql = "DELETE FROM user_owns_platform as uop WHERE user_id = :UUID";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        ':UUID' => $UUID
     ]);
 
-    return $db->lastInsertId();
+    $deleted = $stmt->rowCount();
+
+    $sql = "INSERT INTO user_owns_platform(user_id, platform_id) VALUES ";
+    foreach ($platforms as $index => $platform) {
+        $platforms[$index] = "(" . $UUID . "," . $platform . ")";
+    }
+    $sql .= join(",", $platforms);
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->rowCount() - $deleted;
 }
 
 

@@ -8,9 +8,7 @@ include "includes/funcs.inc.php";
 $games = getAllGames();
 $platforms = getPlatforms();
 $categories = getCategories();
-// echo '<pre>';
-// print_r($platforms);
-// echo '<pre>';
+
 ?>
 
 <!DOCTYPE html>
@@ -32,16 +30,17 @@ $categories = getCategories();
         $highlight = $games[array_rand($games)];
         $name = $highlight["name"];
         ?>
-        <a href="details.php?id=<?= $highlight["id"] ?>">
-            <section id="game_highlight">
 
+        <section id="game_highlight">
+            <a href="details.php?id=<?= $highlight["id"] ?>">
                 <img src="<?= $highlight["image"] ?>" alt="image for highlighted game " .<?= $name ?> />
                 <div class="highlight-content">
                     <h2 class="highlight-title"><?= $name ?></h2>
                     <p class="highlight-description"><?= substr($highlight['description'], 0, 300) . '(...)'; ?></p>
                 </div>
-            </section>
-        </a>
+            </a>
+        </section>
+
         <!-- Filters -->
         <select name="sort" id="sort">
             <option value="rating_desc">Highest rating</option>

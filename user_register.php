@@ -27,7 +27,7 @@ if (isset($_POST['register_submit'])) {
             logIn($newUUID);
             $_SESSION['messages'][] = ['type' => 'notif', 'content' => 'Successfully registered!'];
 
-            header("Location: index.php");
+            header("Location: user_profile.php");
             exit;
         }
     }

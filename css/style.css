@@ -427,14 +427,15 @@ body {
         border: none;
         background-color: var(--white);
       }
-      input[type="submit"] {
+      input[type="submit"],
+      input[type="button"] {
         border-radius: 2rem;
         padding: 0.5rem;
         border: none;
         font-size: 1.7rem;
         background-color: var(--mediumpurple);
         color: var(--white);
-        &#profile_delete {
+        &#open_modal {
           background-color: var(--error-dark);
         }
         &:hover {
@@ -459,6 +460,62 @@ body {
       }
     }
   }
+
+  /* MODALS */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(97, 57, 112, 0.466);
+    .modal-content {
+      background-color: var(--light);
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid var(--error-dark);
+      width: 300px;
+      p {
+        display: block;
+        font-size: 1.5rem;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+      }
+      .modal-cancel {
+        padding: 0.5rem;
+        border: none;
+        font-size: 1.7rem;
+        background-color: var(--mediumpurple);
+        color: var(--white);
+        float: right;
+        &:hover,
+        &:focus {
+          background-color: var(--dark);
+          color: var(--hover);
+          border: 2px;
+          border-color: var(--white);
+        }
+      }
+      .modal-confirm {
+        padding: 0.5rem;
+        border: none;
+        font-size: 1.7rem;
+        background-color: var(--error-dark);
+        color: var(--white);
+        &:focus,
+        &:hover {
+          background-color: var(--error);
+          color: var(--hover);
+          border: 2px;
+        }
+      }
+    }
+  }
+
   /* FOOTER */
   footer {
     display: flex;
