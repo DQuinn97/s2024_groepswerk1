@@ -123,7 +123,7 @@ if (isset($_POST['formSubmit'])) {
             <form method="post" action="add.php">
 
                 <div class="form-group mt-3">
-                    <label for="inputName" class="col-sm-2 col-form-label">Name: *</label>
+                    <label for="inputName" class="col-sm-2 col-form-label">Name:</label>
                     <div>
                         <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" value="<?php echo isset($name) ? $name : ''; ?>">
                     </div>
@@ -137,7 +137,7 @@ if (isset($_POST['formSubmit'])) {
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputImage" class="col-sm-2 col-form-label">Image Link: *</label>
+                    <label for="inputImage" class="col-sm-2 col-form-label">Image Link:</label>
                     <div>
                         <input type="text" class="form-control" id="inputImage" name="inputImage" placeholder="Image Link" value="<?php echo isset($image) ? $image : ''; ?>">
                     </div>
@@ -151,7 +151,7 @@ if (isset($_POST['formSubmit'])) {
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputAgeRestricted" class="col-sm-2 col-form-label">Age Restricted: *</label>
+                    <label for="inputAgeRestricted" class="col-sm-2 col-form-label">Age Restricted:</label>
                     <div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="inputAgeRestricted" id="inputAgeRestricted1" value="1" checked>
@@ -171,14 +171,14 @@ if (isset($_POST['formSubmit'])) {
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputPublisher" class="col-sm-2 col-form-label">Publisher: *</label>
+                    <label for="inputPublisher" class="col-sm-2 col-form-label">Publisher:</label>
                     <div>
                         <input type="text" class="form-control" id="inputPublisher" name="inputPublisher" placeholder="Publisher" value="<?php echo isset($publisher) ? $publisher : ''; ?>">
                     </div>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputReleaseDate" class="col-sm-2 col-form-label">Release Date: *</label>
+                    <label for="inputReleaseDate" class="col-sm-2 col-form-label">Release Date:</label>
                     <div>
                         <input type="text" class="form-control" id="inputReleaseDate" name="inputReleaseDate" placeholder="Release Date" value="<?php echo isset($release_date) ? $release_date : ''; ?>">
                     </div>

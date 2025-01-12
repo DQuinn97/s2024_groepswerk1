@@ -98,35 +98,35 @@ if (isset($_POST['formSubmit'])) {
             <form method="post" action="create.php">
 
                 <div class="form-group mt-3">
-                    <label for="inputDisplayname" class="col-sm-2 col-form-label">Display Name: *</label>
+                    <label for="inputDisplayname" class="col-sm-2 col-form-label">Display Name:</label>
                     <div>
                         <input type="text" class="form-control" id="inputDisplayname" name="inputDisplayname" placeholder="Display Name" value="<?php echo isset($displayname) ? $displayname : ''; ?>">
                     </div>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputEmail" class="col-sm-2 col-form-label">Email Address: *</label>
+                    <label for="inputEmail" class="col-sm-2 col-form-label">Email Address:</label>
                     <div>
                         <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" value="<?php echo isset($email) ? $email : ''; ?>">
                     </div>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Password: *</label>
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
                     <div>
                         <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" value="<?php echo isset($password) ? $password : ''; ?>">
                     </div>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputDateOfBirth" class="col-sm-2 col-form-label">Date of Birth: *</label>
+                    <label for="inputDateOfBirth" class="col-sm-2 col-form-label">Date of Birth:</label>
                     <div>
                         <input type="text" class="form-control" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="Date of Birth" value="<?php echo isset($dateofbirth) ? $dateofbirth : ''; ?>">
                     </div>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputAdmin" class="col-sm-2 col-form-label">Admin: *</label>
+                    <label for="inputAdmin" class="col-sm-2 col-form-label">Admin:</label>
                     <div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="inputAdmin" id="inputAdmin1" value="1">

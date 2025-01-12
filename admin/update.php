@@ -121,7 +121,7 @@ if (isset($_POST['formUpdate'])) {
                 <input type="hidden" name="id" value="<?= $game['id']; ?>">
 
                 <div class="form-group mt-3">
-                    <label for="inputName" class="col-sm-2 col-form-label">Name: *</label>
+                    <label for="inputName" class="col-sm-2 col-form-label">Name:</label>
                     <div>
                         <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" value="<?= $game['name']; ?>">
                     </div>
@@ -135,7 +135,7 @@ if (isset($_POST['formUpdate'])) {
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputImage" class="col-sm-2 col-form-label">Image Link: *</label>
+                    <label for="inputImage" class="col-sm-2 col-form-label">Image Link:</label>
                     <div>
                         <input type="text" class="form-control" id="inputImage" name="inputImage" placeholder="Image Link" value="<?= $game['image']; ?>">
                     </div>
@@ -149,14 +149,14 @@ if (isset($_POST['formUpdate'])) {
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputStatus" class="col-sm-2 col-form-label">Status: *</label>
+                    <label for="inputStatus" class="col-sm-2 col-form-label">Status:</label>
                     <div>
                         <input type="text" class="form-control" id="inputStatus" name="inputStatus" placeholder="Status" value="<?= $game['status']; ?>">
                     </div>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputAgeRestricted" class="col-sm-2 col-form-label">Age Restricted: *</label>
+                    <label for="inputAgeRestricted" class="col-sm-2 col-form-label">Age Restricted:</label>
                     <div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="inputAgeRestricted" id="inputAgeRestricted1" value="1" checked>
@@ -176,14 +176,14 @@ if (isset($_POST['formUpdate'])) {
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputPublisher" class="col-sm-2 col-form-label">Publisher: *</label>
+                    <label for="inputPublisher" class="col-sm-2 col-form-label">Publisher:</label>
                     <div>
                         <input type="text" class="form-control" id="inputPublisher" name="inputPublisher" placeholder="Publisher" value="<?= $game['publisher'] ?>">
                     </div>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="inputReleaseDate" class="col-sm-2 col-form-label">Release Date: *</label>
+                    <label for="inputReleaseDate" class="col-sm-2 col-form-label">Release Date:</label>
                     <div>
                         <input type="text" class="form-control" id="inputReleaseDate" name="inputReleaseDate" placeholder="Release Date" value="<?= $game['release_date'] ?>">
                     </div>
