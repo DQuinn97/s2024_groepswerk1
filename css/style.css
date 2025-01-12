@@ -2,6 +2,7 @@
 @import url("./icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
 :root {
+  font-family: Inter;
   font-size: 62.5%;
   --dark: rgb(57, 54, 70);
   --seconddark: rgb(79, 69, 87);
@@ -9,38 +10,95 @@
   --light: rgb(244, 238, 224);
   --hover: rgb(60, 176, 103);
   --white: white;
+  --error: #ffcccc;
 }
 * {
   box-sizing: border-box;
   margin: 0 2rem 0 2rem;
 }
 body {
+  min-height: 100vh;
   background-color: lightgray;
   header {
+    max-height: 90px;
     display: flex;
     background-color: var(--dark);
     justify-content: space-between;
     padding: 1rem 2rem;
     color: var(--light);
-    div {
-      display: flex;
-      align-items: center;
-      h1 {
-        transition: color 0.2s ease 0.05s;
-        font-size: 2.5rem;
-        font-weight: 700;
-        &:hover {
-          color: var(--hover);
+    a {
+      text-decoration: none;
+      &:visited {
+        color: inherit;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        h1 {
+          transition: color 0.2s ease 0.05s;
+          font-size: 2.5rem;
+          font-weight: 700;
+          &:hover {
+            color: var(--hover);
+          }
         }
       }
     }
+    /* NAVIGATION */
     nav {
       align-items: center;
       display: flex;
       color: var(--light);
       padding: 1rem;
+      #menu-toggle {
+        display: none;
+      }
+      .menu-icon-container {
+        display: none;
+        height: 100%;
+        width: auto;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .menu-icon,
+      .menu-icon:before,
+      .menu-icon:after {
+        display: block;
+        background: white;
+        position: absolute;
+        height: 4px;
+        width: 30px;
+        border-radius: 2px;
+        transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .menu-icon:before {
+        content: "";
+        margin-top: -8px;
+      }
+      .menu-icon:after {
+        content: "";
+        margin-top: 8px;
+      }
+      #menu-toggle:checked + .menu-icon-container .menu-icon::before {
+        margin-top: 0px;
+        transform: rotate(405deg);
+      }
+
+      #menu-toggle:checked + .menu-icon-container .menu-icon {
+        background: rgba(255, 255, 255, 0);
+      }
+
+      #menu-toggle:checked + .menu-icon-container .menu-icon::after {
+        margin-top: 0px;
+        transform: rotate(-405deg);
+      }
+
       ul {
         display: flex;
+        overflow: hidden;
+        z-index: 3;
         li {
           a {
             transition: color 0.2s ease 0.05s;
@@ -49,8 +107,12 @@ body {
             padding: 0 1rem;
             font-size: medium;
             font-weight: 700;
-            &:hover {
+            &:hover,
+            &:visited:hover {
               color: var(--hover);
+            }
+            &:visited {
+              color: inherit;
             }
           }
         }
@@ -58,38 +120,64 @@ body {
       div {
         padding: 2.5rem;
       }
-      #notification {
+      /* #notification {
         height: 2rem;
         color: var(--white);
         &:hover {
           color: var(--hover);
         }
-      }
-      #notification::before {
-        font-family: icomoon;
-        content: "\e951";
-        font-size: 1.5rem;
-      }
+        &::before {
+          font-family: icomoon;
+          content: "\e951";
+          font-size: 1.5rem;
+        }
+      } */
       #profile {
         padding: 2px;
         border: solid 2px var(--light);
+        margin-left: 1rem;
         border-radius: 50%;
-        &:hover {
-          color: var(--hover);
-          border-color: var(--hover);
+        cursor: pointer;
+        &::before {
+          font-family: icomoon;
+          content: "\e971";
+          font-size: 1.9rem;
+          &:hover {
+            color: var(--hover);
+            border-color: var(--hover);
+          }
         }
-      }
-      #profile::before {
-        font-family: icomoon;
-        content: "\e971";
-        font-size: 1.9rem;
+        section {
+          display: none;
+          position: absolute;
+          right: 0;
+          top: 90px;
+          background-color: var(--mediumpurple);
+          z-index: 3;
+          ul {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--seconddark);
+            li {
+              display: block;
+              width: 100%;
+              min-width: 150px;
+              border: 1px solid var(--seconddark);
+              padding: 1.5rem 0;
+              a {
+                display: inline-block;
+                width: 100%;
+              }
+            }
+          }
+        }
       }
     }
   }
   main {
     position: relative;
     margin-top: 2rem;
-
+    /* HOMEPAGE */
     #game_highlight {
       display: block;
       position: relative;
@@ -97,57 +185,50 @@ body {
       max-width: 700px;
       margin: 0 auto;
       aspect-ratio: 2/1;
-    }
-    #game_highlight img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    #game_highlight .highlight-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      color: var(--white);
-    }
-
-    #game_highlight .highlight-title {
-      color: var(--white);
-      font-size: 4rem;
-      text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.911);
-      opacity: 0.8;
-    }
-
-    #game_highlight .highlight-description {
-      font-size: 1.6rem;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-    }
-
-    #game_highlight:hover .highlight-content {
-      background: rgba(121, 112, 161, 0.555);
-    }
-
-    #game_highlight:hover .highlight-description {
-      opacity: 1;
-    }
-
-    .highlight-description {
-      max-height: 100%;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .highlight-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        color: var(--white);
+      }
+      .highlight-title {
+        color: var(--white);
+        font-size: 4rem;
+        text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.911);
+        opacity: 0.8;
+      }
+      .highlight-description {
+        font-size: 1.6rem;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        max-height: 100%;
+        max-width: 60%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &:hover {
+        .highlight-content {
+          background: rgba(121, 112, 161, 0.555);
+        }
+        .highlight-description {
+          opacity: 1;
+        }
+      }
     }
 
-    aside#filters {
-    }
     select#sort {
       width: 15rem;
       justify-self: end;
@@ -177,7 +258,7 @@ body {
     }
     #game_list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
       margin-bottom: 1rem;
       .game_card:hover .card_title {
@@ -188,6 +269,7 @@ body {
       .game_card {
         position: relative;
         overflow: hidden;
+        aspect-ratio: 2/1;
         .card_title {
           position: absolute;
           top: 0;
@@ -202,39 +284,94 @@ body {
           padding: 0.5rem 0;
           z-index: 1;
         }
-        :hover {
+        &:hover {
           transform: scale(1.1);
           .game_details {
             display: block;
           }
         }
+        .game_details {
+          position: absolute;
+          bottom: -100%;
+          left: 0;
+          width: 100%;
+          background: rgba(97, 57, 112, 0.466);
+          color: var(--white);
+          text-align: center;
+          font-size: 1.2rem;
+          padding: 1rem;
+          .category_tags {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            width: 100%;
+            .category_tag {
+              background-color: var(--mediumpurple);
+              border: 1px solid var(--dark);
+              padding: 0.5rem;
+              border-radius: 1rem;
+              height: fit-content;
+            }
+          }
+        }
       }
 
       .game_card img {
+        object-fit: cover;
         width: 100%;
-        height: auto;
+        height: 100%;
         display: block;
         border-radius: 8px;
       }
-
-      .game_details {
-        position: absolute;
-        bottom: -100%;
-        left: 0;
-        width: 100%;
-        background: rgba(97, 57, 112, 0.466);
-        color: var(--white);
-        text-align: center;
-        font-size: 1.2rem;
-        padding: 1rem;
-      }
     }
   }
-
   #game_list .game_card:hover .game_details {
     bottom: 0;
   }
 
+  /* LOGIN ETC */
+  #loginform {
+    width: 100%;
+    min-height: auto;
+    justify-content: center;
+    form {
+      min-height: 250px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      min-width: 250px;
+      width: 50%;
+      margin: 3rem auto;
+      gap: 1rem;
+      padding: 3rem;
+      background-color: var(--light);
+      border-radius: 1rem;
+      text-align: center;
+
+      h3 {
+        display: inline-block;
+        font-size: 4rem;
+        font-weight: bold;
+        padding: 2rem;
+        border-bottom: 1px solid var(--mediumpurple);
+      }
+      #error_messages {
+        margin-bottom: 2rem;
+      }
+      label,
+      input {
+        font-size: 1.5rem;
+      }
+      input {
+        margin-bottom: 2rem;
+        width: auto;
+      }
+      #error_messages {
+        background-color: var(--error);
+      }
+    }
+  }
   /* FOOTER */
   footer {
     display: flex;
@@ -309,20 +446,60 @@ body {
 }
 
 /* MOBILE  */
-@media (max-width: 700px) {
-  nav ul li {
-    display: none;
-    gap: 0;
-  }
-
-  nav #menu-icon:before {
-    font-family: "icomoon";
-    font-size: 2rem;
-    padding-right: 0;
-    color: var(--white);
-    transition: color 0.2s ease 0.05s;
-    display: block;
-    content: "\e9bd";
+@media (max-width: 780px) {
+  nav {
+    .menu-icon-container {
+      display: flex;
+    }
+    #navigation {
+      position: absolute;
+      top: 0;
+      margin-top: 90px;
+      left: 0;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    #menu-toggle ~ #navigation li {
+      height: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    #menu-toggle:checked ~ #navigation li {
+      border: 1px solid var(--seconddark);
+      padding: 1.5em;
+      height: 5rem;
+      transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    #navigation > li {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 1.5em 0;
+      width: 100%;
+      color: white;
+      background-color: var(--mediumpurple);
+    }
+    #navigation > li:not(:last-child) {
+      border-bottom: 1px solid #444;
+    }
+    #menu-icon:before {
+      font-family: "icomoon";
+      font-size: 2rem;
+      cursor: pointer;
+      padding-right: 0;
+      color: var(--white);
+      transition: color 0.2s ease 0.05s;
+      display: block;
+      content: "\e9bd";
+      &:hover,
+      &:visited:hover {
+        color: var(--hover);
+      }
+    }
   }
 }
 

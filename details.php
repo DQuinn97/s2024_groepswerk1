@@ -1,5 +1,6 @@
 <?php
-require("./includes/db.inc.php");
+include "includes/db.inc.php";
+include "includes/funcs.inc.php";
 include_once "includes/css_js.inc.php";
 
 ini_set('display_errors', 1);
