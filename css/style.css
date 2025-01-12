@@ -384,7 +384,7 @@ body {
       justify-content: center;
       display: flex;
       flex-direction: column;
-      min-width: 250px;
+      min-width: 300px;
       width: 50%;
       margin: 3rem auto;
       gap: 1rem;
@@ -445,6 +445,16 @@ body {
           &#profile_delete {
             background-color: var(--error);
           }
+        }
+      }
+      .profile_platforms {
+        width: 160px;
+        text-align: left;
+        align-self: center;
+        align-items: right;
+        input[type="checkbox"] {
+          float: right;
+          margin-right: 0;
         }
       }
     }

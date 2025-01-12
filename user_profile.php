@@ -11,11 +11,14 @@ include "includes/funcs.inc.php";
 requiredLoggedIn();
 
 $errors = [];
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
+
 
 $UUID = $_SESSION['UUID'];
+$user = getAllUsers($UUID)[0];
+echo '<pre>';
+print_r($user);
+echo '</pre>';
+
 if (isset($_POST["profile_submit"])) {
     if (isset($_POST["profile_displayname"])) {
         if (strlen($_POST["profile_displayname"]) > 32) $errors[] = "Displayname cannot be longer than 32 characters...";
@@ -51,15 +54,23 @@ if (isset($_POST["profile_submit"])) {
         <section id="userprofile_edit">
             <form action="user_profile.php" method="POST">
                 <h3>User <?= $UUID ?><span>(internal ID)</span></h3>
+                <p>Leaving this page without saving will revert changes.</p>
                 <ul id="error_messages"><?php foreach ($errors as $error): ?><li><?= $error ?></li><?php endforeach; ?></ul>
                 <label for="profile_displayname">Displayname:</label><input type="text" id="profile_displayname" name="profile_displayname" value="<?= $_POST["profile_displayname"] ?? '' ?>">
                 <label for="profile_dob">Date of birth <span>(required for agerestricted games)</span>:</label><input type="date" id="profile_dob" name="profile_dob" max="<?= date("Y-m-d") ?>" value="<?= $_POST["profile_dob"] ?? '' ?>">
+                <!-- Platforms -->
+                <label>Platforms:</label>
+                <?php foreach (getPlatforms() as $platform): ?>
+                    <div class="profile_platforms"><label for="profile_platform_<?= $platform["name"] ?>"><?= $platform["name"] ?> </label><input type="checkbox" id="profile_platform_<?= $platform["name"] ?>" name="profile_platforms[]" value="<?= $platform["id"] ?>"></div>
+                <?php endforeach; ?>
+                <!-- Password -->
                 <h4>Change password (optional):</h4>
                 <label for="profile_oldPassword">Enter password: </label><input type="text" id="profile_oldPassword" name="profile_oldPassword">
                 <label for="profile_newPassword">Enter new password: </label><input type="text" id="profile_newPassword" name="profile_newPassword">
 
                 <input type="submit" value="save" id="profile_submit" name="profile_submit">
                 <hr>
+                <!-- DELETE PROFILE -->
                 <h4>Delete profile: </h4>
                 <p>WARNING: this is irreversible</p>
                 <input type="submit" value="DELETE" id="profile_delete" name="profile_delete">
