@@ -15,6 +15,8 @@
 * {
   box-sizing: border-box;
   margin: 0 2rem 0 2rem;
+  font-family: Georgia, "Times New Roman", Times, sans-serif;
+  font-size: 1.2rem;
 }
 body {
   min-height: 100vh;
@@ -330,6 +332,47 @@ body {
     bottom: 0;
   }
 
+  /* DETAILS PAGE */
+
+  main {
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    div.gamedetails {
+      margin: 2rem 2rem;
+      h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--seconddark);
+        padding-bottom: 2rem;
+      }
+      .gamedetail {
+        text-align: left;
+        margin-top: 1rem;
+      }
+      span,
+      h4 {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--mediumpurple);
+        text-align: left;
+        padding-top: 1rem;
+      }
+      p {
+        color: var(--dark);
+        font-size: 1.5rem;
+        text-align: left;
+      }
+      h4 {
+      }
+      div.image {
+      }
+      div.image img {
+        max-width: 70%;
+        /* max-height: 400px; */
+      }
+    }
+  }
   /* LOGIN ETC */
   #loginform {
     width: 100%;
