@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
@@ -6,7 +10,7 @@ include "includes/funcs.inc.php";
 session_start();
 $UUID = @$_SESSION['UUID'];
 $adult = false;
-if ($UUID) checkAge('UUID');
+if ($UUID) checkAge($UUID);
 
 if (isset($_POST['paginationSubmit'])) {
     $_POST = unserialize($_POST['postData']);
