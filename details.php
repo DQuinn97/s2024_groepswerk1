@@ -40,30 +40,34 @@ if (isset($id)) {
 <body>
     <?php include("includes/header.inc.php"); ?>
     <main>
-        <div class="container">
-            <h1><?= $game['name']; ?></h2>
-                <!-- <hr /> -->
+        <section class="gamedetails">
+            <div class="container">
+                <h1><?= $game['name']; ?></h2>
+                    <!-- <hr /> -->
 
-                <div class="image"><img src="<?= $game['image'] ?>" alt=""><img></div>
-                <p>Developed by: <?= $game['developer']; ?></p>
-                <p>Published by: <?= $game['publisher']; ?></p>
-                <p>Release date: <?= $release; ?></p>
+                    <div class="image"><img src="<?= $game['image'] ?>" alt=""><img></div>
+                    <p>Developed by: <?= $game['developer']; ?></p>
+                    <p>Published by: <?= $game['publisher']; ?></p>
+                    <p>Release date: <?= $release; ?></p>
 
-                <h4>About:</h4>
-                <p>
-                    <?= $game['description']; ?>
-                </p>
+                    <h4>About:</h4>
+                    <p>
+                        <?= $game['description']; ?>
+                    </p>
 
-        </div>
-        <tbody>
-            <?php foreach ($ratings as $rating) { ?>
-                <tr>
-                    <td>User <strong><?= $rating['displayname'] ?></strong></td>
-                    <td>gave this game a rating of <strong><?= $rating['rating'] ?></strong>:</td>
-                    <td><i>"<?= $rating['review'] ?>"</i></td><br>
-                </tr>
-            <?php } ?>
-        </tbody>
+            </div>
+        </section>
+        <section class="reviews">
+            <tbody>
+                <?php foreach ($ratings as $rating) { ?>
+                    <tr>
+                        <td><?= $rating['displayname'] ?></td>
+                        <td>gave this game a rating of <?= $rating['rating'] ?>:</td>
+                        <td><i>"<?= $rating['review'] ?>"</i></td><br>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </section>
     </main>
     <?php include("includes/footer.inc.php"); ?>
 </body>
