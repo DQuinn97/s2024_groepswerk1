@@ -123,7 +123,6 @@ function getAllGames(bool $ageRestrict = null, int $startAt = null, int $perPage
         }
     }
     $sql = "SELECT * FROM " . $target . " AS games";
-    print_r($sql);
 
     if ($ageRestrict == true) {
         $sql .= " WHERE ageRestricted = false";
