@@ -85,7 +85,7 @@ $name = $highlight["name"];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SavePoint HOMEPAGE</title>
+    <title>SavePoint - Homepage</title>
     <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
     <script type="module" src="./dist/<?= $jsPath ?>"></script>
 </head>

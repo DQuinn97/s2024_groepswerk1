@@ -31,6 +31,7 @@ if (isset($id)) {
 
 
 if (isset($_POST['reviewSubmit'])) {
+    print_r($_POST);
     $user_id = 1; // TODO: Get user id
     $game_id = $id;
     $userRating = $_POST['inputRating'];
@@ -92,17 +93,17 @@ if (isset($_POST['reviewSubmit'])) {
                     </p>
                 </div>
                 <tbody>
-                    <?php foreach ($ratings as $rating) { ?>
-                        <p>
-                            <tr>
-                                <td><?= $rating['displayname'] ?></td>
-                                <td>gave this game a rating of <?= $rating['rating'] ?>:</td>
-                                <td>"<?= $rating['review'] ?>"</td><br>
-                            </tr>
-                        </p>
-                    <?php } ?>
+                    <?php foreach ($ratings as $rating) : ?>
+
+                        <tr>
+                            <td><?= $rating['displayname'] ?></td>
+                            <td>gave this game a rating of <?= $rating['rating'] ?>:</td>
+                            <td>"<?= $rating['review'] ?>"</td><br>
+                        </tr>
+
+                    <?php endforeach; ?>
                 </tbody>
-                <?php if (isLoggedIn()) { ?>
+                <?php if (isLoggedIn()) : ?>
                     <?php if (count($errors) > 0): ?>
                         <div class="alert">
                             <ul>
@@ -111,7 +112,7 @@ if (isset($_POST['reviewSubmit'])) {
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                    <?php endif ?>
+                    <?php endif; ?>
                     <form method="post" action="details.php?id=<?= $id ?>">
                         <div class="form" style="padding-top: 2rem;">
                             <label for="inputRating" class="col-sm-2 col-form-label">
@@ -147,7 +148,7 @@ if (isset($_POST['reviewSubmit'])) {
                             </div>
                         </div>
                     </form>
-                <?php } ?>
+                <?php endif; ?>
         </div>
     </main>
     <?php include("includes/footer.inc.php"); ?>
