@@ -11,10 +11,13 @@
   --hover: rgb(60, 176, 103);
   --white: white;
   --error: #ffcccc;
+  --error-dark: #ff2121;
 }
 * {
   box-sizing: border-box;
   margin: 0 2rem 0 2rem;
+  font-family: Inter;
+  font-size: 1.2rem;
 }
 body {
   min-height: 100vh;
@@ -229,30 +232,66 @@ body {
       }
     }
 
-    select#sort {
-      width: 15rem;
-      justify-self: end;
-      display: flex;
-      margin: 1rem;
-    }
     #game_section {
       display: flex;
       flex-direction: row;
       font-size: 1.5rem;
-      margin: 0;
-      padding: 0;
+      margin: 2rem 0;
+      padding: 2rem;
+      background-color: var(--light);
+      border: 1px solid var(--mediumpurple);
+      border-radius: 1rem;
     }
     aside#filters {
-      background-color: var(--light);
-      padding: 1rem;
-      border: none;
-      margin: 1rem 0 1rem 0;
-      border-top-left-radius: 1rem;
-      border-bottom-left-radius: 1rem;
-      min-width: 150px;
-      #filter {
-        .filter {
-          display: block;
+      form {
+        background-color: var(--light);
+        border: none;
+        margin-left: -1rem;
+        margin-right: 1rem;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        min-width: 150px;
+
+        h2 {
+          width: 100%;
+          font-size: 2rem;
+          font-weight: bold;
+          span {
+            font-size: 1.5rem;
+            float: right;
+          }
+          &:nth-of-type(2) {
+            margin-top: 1rem;
+            border-top: 1px solid black;
+            padding-top: 1rem;
+          }
+        }
+        h3 {
+          margin: 1rem 0.5rem;
+          font-size: 1.8rem;
+          width: 100%;
+        }
+        #filter {
+          > div:nth-of-type(1) {
+            max-height: 500px;
+            overflow: scroll;
+          }
+          .filter {
+            display: block;
+            input {
+              display: inline-block;
+              margin: 0;
+              padding: 0;
+              width: 10px;
+            }
+          }
+          input {
+            margin: 1rem 0;
+          }
+        }
+        #sort {
+          width: 100%;
+          margin: 1rem 0;
         }
       }
     }
@@ -325,13 +364,76 @@ body {
         border-radius: 8px;
       }
     }
+    .pagination {
+      margin: 2rem;
+      display: flex;
+      span {
+        form {
+          input {
+            background-color: var(--mediumpurple);
+            color: var(--light);
+            padding: 1rem;
+            border-radius: 1rem;
+          }
+        }
+
+        &:nth-of-type(1) {
+          margin-left: 20px;
+        }
+        &:nth-of-type(2) {
+          margin-left: auto;
+          margin-right: 20px;
+        }
+      }
+    }
+    /* DETAIL PAGE */
+    div.gamedetails {
+      margin: 2rem 2rem;
+      h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--seconddark);
+        padding-bottom: 2rem;
+      }
+      .gamedetail {
+        text-align: left;
+        margin-top: 1rem;
+      }
+      span,
+      h4 {
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--mediumpurple);
+        text-align: left;
+        padding-top: 1rem;
+      }
+      p {
+        color: var(--dark);
+        font-size: 1.5rem;
+        text-align: left;
+      }
+      h4 {
+      }
+      div.image {
+      }
+      div.image img {
+        max-width: 70%;
+        /* max-height: 400px; */
+      }
+    }
   }
   #game_list .game_card:hover .game_details {
     bottom: 0;
   }
 
   /* LOGIN ETC */
-  #loginform {
+  #loginform,
+  #userprofile_edit {
+    * span {
+      font-size: 1rem;
+      font-weight: 100;
+      padding-left: 1rem;
+    }
     width: 100%;
     min-height: auto;
     justify-content: center;
@@ -340,7 +442,7 @@ body {
       justify-content: center;
       display: flex;
       flex-direction: column;
-      min-width: 250px;
+      min-width: 300px;
       width: 50%;
       margin: 3rem auto;
       gap: 1rem;
@@ -349,18 +451,24 @@ body {
       border-radius: 1rem;
       text-align: center;
 
-      h3 {
+      h3,
+      h4 {
         display: inline-block;
         font-size: 4rem;
         font-weight: bold;
         padding: 2rem;
         border-bottom: 1px solid var(--mediumpurple);
       }
+      h4 {
+        font-size: 1.7rem;
+        border-bottom: none;
+      }
       #error_messages {
         margin-bottom: 2rem;
       }
       label,
-      input {
+      input,
+      p {
         font-size: 1.5rem;
       }
       input {
@@ -370,8 +478,102 @@ body {
       #error_messages {
         background-color: var(--error);
       }
+      input[type="text"],
+      input[type="date"] {
+        padding: 0.6rem;
+        border-radius: 2rem;
+        border: none;
+        background-color: var(--white);
+      }
+      input[type="submit"],
+      input[type="button"] {
+        border-radius: 2rem;
+        padding: 0.5rem;
+        border: none;
+        font-size: 1.7rem;
+        background-color: var(--mediumpurple);
+        color: var(--white);
+        &#open_modal {
+          background-color: var(--error-dark);
+        }
+        &:hover {
+          background-color: var(--dark);
+          color: var(--hover);
+          border: 2px;
+          border-color: var(--white);
+          &#profile_delete {
+            background-color: var(--error);
+          }
+        }
+      }
+      .profile_platforms {
+        width: 160px;
+        text-align: left;
+        align-self: center;
+        align-items: right;
+        input[type="checkbox"] {
+          float: right;
+          margin-right: 0;
+        }
+      }
     }
   }
+
+  /* MODALS */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(97, 57, 112, 0.466);
+    .modal-content {
+      background-color: var(--light);
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid var(--error-dark);
+      width: 300px;
+      p {
+        display: block;
+        font-size: 1.5rem;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+      }
+      .modal-cancel {
+        padding: 0.5rem;
+        border: none;
+        font-size: 1.7rem;
+        background-color: var(--mediumpurple);
+        color: var(--white);
+        float: right;
+        &:hover,
+        &:focus {
+          background-color: var(--dark);
+          color: var(--hover);
+          border: 2px;
+          border-color: var(--white);
+        }
+      }
+      .modal-confirm {
+        padding: 0.5rem;
+        border: none;
+        font-size: 1.7rem;
+        background-color: var(--error-dark);
+        color: var(--white);
+        &:focus,
+        &:hover {
+          background-color: var(--error);
+          color: var(--hover);
+          border: 2px;
+        }
+      }
+    }
+  }
+
   /* FOOTER */
   footer {
     display: flex;
@@ -400,7 +602,7 @@ body {
       }
       form {
         padding-top: 1rem;
-        input[type="text"] {
+        /* input[type="text"] {
           padding: 0.6rem;
           border-radius: 2rem;
           border: none;
@@ -418,7 +620,7 @@ body {
             border: 2px;
             border-color: var(--hover);
           }
-        }
+        } */
       }
     }
     section ul {

@@ -2,7 +2,7 @@
 function requiredLoggedIn()
 {
     if (!isLoggedIn()) {
-        header("Location: login.php");
+        header("Location: user_login.php");
         exit;
     }
 }
@@ -56,4 +56,9 @@ function logIn($UUID)
 {
     $_SESSION['UUID'] = $UUID;
     $_SESSION['user_logged_in'] = time() + 3600;
+}
+function passRegex(String $password): bool
+{
+    $passwordRegex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
+    return preg_match($passwordRegex, $password);
 }

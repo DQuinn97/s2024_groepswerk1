@@ -6,8 +6,9 @@ include "includes/funcs.inc.php";
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
-
-
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
 requiredLoggedOut();
 $errors = [];
 
@@ -16,6 +17,9 @@ if (isset($_POST['login_submit'])) {
     if (!strlen($_POST['login_password'])) $errors[] = "Please enter password...";
 
     $UUID = checkUser($_POST['login_email'], $_POST['login_password']);
+    echo '<pre>';
+    print_r(md5($_POST['login_password']));
+    echo '</pre>';
     if ($UUID) {
         logIn($UUID);
         $_SESSION['messages'][] = ['type' => 'log', 'content' => 'logged in on ' . date("d-m-Y")];
@@ -23,7 +27,7 @@ if (isset($_POST['login_submit'])) {
         header("Location: index.php");
         exit;
     } else {
-        $errors[] = "Unknown log in credentials...";
+        $errors[] = "Wrong password...";
     }
 }
 
@@ -47,9 +51,9 @@ if (isset($_POST['login_submit'])) {
             <form action="user_login.php" method="POST">
                 <h3>Log in</h3>
                 <ul id="error_messages"><?php foreach ($errors as $error): ?><li><?= $error ?></li><?php endforeach; ?></ul>
-                <label for="login_email">Email:</label><input type="text" name="login_email">
-                <label for="login_password">Password:</label><input type="text" name="login_password">
-                <input type="submit" value="log in" name="login_submit">
+                <label for="login_email">Email:</label><input type="text" id="login_email" name="login_email">
+                <label for="login_password">Password:</label><input type="text" id="login_password" name="login_password">
+                <input type="submit" value="log in" id="login_submit" name="login_submit">
                 <a href="user_register.php">Need an account? Register now!</a>
             </form>
         </section>

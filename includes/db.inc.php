@@ -27,6 +27,14 @@ function getPlatforms(int $game_id = 0): array|bool
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getUserPlatforms(int $UUID): array|bool
+{
+    $sql = "SELECT platforms.id, platforms.name FROM platforms JOIN user_owns_platform as uop ON platforms.id = uop.platform_id WHERE uop.user_id = :UUID;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':UUID' => $UUID]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 function getCategories(int $game_id = 0): array|bool
 {
     $sql = "SELECT categories.id, categories.name FROM categories";
@@ -68,6 +76,15 @@ function getRatingsById(int $id): array|bool
     ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getAvgRatingById(int $id)
+{
+    $sql = "SELECT AVG(rating) as rating FROM ratings WHERE game_id = :id";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ":id" => $id
+    ]);
+    return $stmt->fetchColumn();
+}
 
 function formatDateTime($datetime)
 {
@@ -87,12 +104,34 @@ function getAllUsers($allUsers = 0): array
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getAllGames($allGames = 0): array
-{
-    $sql = "SELECT * FROM games";
 
-    if ($allGames > 0)
-        $sql .= " WHERE games.id = $allGames";
+function getAllGames(bool $ageRestrict = null, int $startAt = null, int $perPage = 20, String $sort = "id", String $order = "ASC", array $categoryfilters = [], array $platformfilters = []): array
+{
+    $target = "games";
+
+    if (count($categoryfilters) || count($platformfilters)) {
+        if (count($categoryfilters) && !count($platformfilters)) {
+            $categoryfilter = join(',', $categoryfilters);
+            $target = "(SELECT games.* FROM games JOIN game_in_category ON game_id = games.id AND category_id IN (" . $categoryfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($categoryfilters) . ")";
+        } elseif (!count($categoryfilters) && count($platformfilters)) {
+            $platformfilter = join(',', $platformfilters);
+            $target = "(SELECT games.* FROM games JOIN game_on_platform ON game_id = games.id AND platform_id IN (" . $platformfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($platformfilters) . ")";
+        } else {
+            $categoryfilter = join(',', $categoryfilters);
+            $platformfilter = join(',', $platformfilters);
+            $target = "(SELECT games.* FROM (SELECT games.* FROM games JOIN game_in_category ON game_id = games.id AND category_id IN (" . $categoryfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($categoryfilters) . ") AS games JOIN game_on_platform ON game_id = games.id AND platform_id IN (" . $platformfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($platformfilters) . ")";
+        }
+    }
+    $sql = "SELECT * FROM " . $target . " AS games";
+    print_r($sql);
+
+    if ($ageRestrict == true) {
+        $sql .= " WHERE ageRestricted = false";
+    }
+    $sql .= " ORDER BY " . $sort . " " . $order;
+    if ($startAt !== null) {
+        $sql .= " LIMIT " . $startAt . ',' . $perPage;
+    }
 
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute();
@@ -109,6 +148,13 @@ function getAllGames($allGames = 0): array
     }, $games);
 
     return $games;
+}
+function getAllGamesCount(): int
+{
+    $sql = "SELECT COUNT(*) as total FROM games";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchColumn();
 }
 
 function insertGame(String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image, String $description, String $publisher, String $release_date): bool|int
@@ -162,16 +208,18 @@ function deleteGame(int $id): bool|int
     return $db->lastInsertId();
 }
 
-function deleteUser(int $id): bool|int
+function deleteUser(int $id): int
 {
     $db = connectToDB();
+
     $sql = "DELETE FROM users WHERE id = :id";
     $stmt = $db->prepare($sql);
     $stmt->execute([
         'id' => $id
     ]);
+    $deletedRows = $stmt->rowCount();
 
-    return $db->lastInsertId();
+    return $deletedRows;
 }
 
 function insertUser(String $displayname, String $email, String $password, String $dateofbirth, int $status = 1, int $isAdmin = 0): bool|int
@@ -200,26 +248,55 @@ function getUserById(int $id): array|bool
     $stmt->execute([
         ":id" => $id
     ]);
-    $game = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    return $game;
+    return $user;
 }
 
-function updateUser(int $id, String $displayname, String $email, String $dateofbirth, int $status, int $isAdmin): bool|int
+function updateUser(int $id, String $displayname, String $email, String $dateofbirth, int $status, int $isAdmin, String $password = null): bool|int
 {
     $db = connectToDB();
-    $sql = "UPDATE users SET displayname=:displayname, email=:email, dateofbirth=:dateofbirth, status=:status, isAdmin=:isAdmin WHERE id = :id";
-    $stmt = $db->prepare($sql);
-    $stmt->execute([
+    $optional = "";
+    $options = [
         'id' => $id,
-        'displayname' => $displayname,
+        'displayname' => $displayname ?: null,
         'email' => $email,
-        'dateofbirth' => $dateofbirth,
+        'dateofbirth' => $dateofbirth ?: null,
         'status' => $status,
         'isAdmin' => $isAdmin,
+    ];
+    if ($password !== null) {
+        $optional = " password=:password,";
+        $options['password'] = md5($password);
+    }
+
+    $sql = "UPDATE users SET displayname=:displayname," . $optional . " email=:email, dateofbirth=:dateofbirth, status=:status, isAdmin=:isAdmin, updated=CURRENT_TIMESTAMP WHERE id = :id";
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute($options);
+
+    return $stmt->rowCount();
+}
+function updateUserPlatforms(int $UUID, array $platforms)
+{
+    $db = connectToDB();
+    $sql = "DELETE FROM user_owns_platform as uop WHERE user_id = :UUID";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        ':UUID' => $UUID
     ]);
 
-    return $db->lastInsertId();
+    $deleted = $stmt->rowCount();
+
+    $sql = "INSERT INTO user_owns_platform(user_id, platform_id) VALUES ";
+    foreach ($platforms as $index => $platform) {
+        $platforms[$index] = "(" . $UUID . "," . $platform . ")";
+    }
+    $sql .= join(",", $platforms);
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->rowCount() - $deleted;
 }
 
 
@@ -250,6 +327,20 @@ function checkUser(String $email, String $password): bool | int
 function checkAdmin(int $UUID): bool
 {
     $sql = "SELECT isAdmin FROM users WHERE id = :UUID;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':UUID' => $UUID]);
+    return $stmt->fetchColumn();
+}
+function checkPassword(int $UUID, String $password): bool
+{
+    $sql = "SELECT id FROM users WHERE id = :UUID AND password = :password;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':UUID' => $UUID, ':password' => md5($password)]);
+    return $stmt->fetchColumn();
+}
+function checkAge(int $UUID): bool
+{
+    $sql = "SELECT id FROM users WHERE id = :UUID AND TIMESTAMPDIFF(YEAR, dateofbirth, NOW()) > 18";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([':UUID' => $UUID]);
     return $stmt->fetchColumn();

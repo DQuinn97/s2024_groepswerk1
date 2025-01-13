@@ -2,15 +2,41 @@
 include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-$games = getAllGames();
+
+session_start();
+$UUID = @$_SESSION['UUID'];
+$adult = false;
+if ($UUID) checkAge('UUID');
+
+if (isset($_POST['paginationSubmit'])) {
+    $_POST = unserialize($_POST['postData']);
+}
+
+$perPage = 20;
+$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+$startAt  = $perPage * ($page - 1);
+
+$totalGames = getAllGamesCount();
+$totalPages = ceil($totalGames / $perPage);
+
+$games = [];
+if (isset($_POST['filterSubmit'])) {
+    $categoryFilters = [];
+    if (isset($_POST['categoryFilter'])) $categoryFilters = $_POST['categoryFilter'];
+    $platformFilters = [];
+    if (isset($_POST['platformFilter'])) $platformFilters = $_POST['platformFilter'];
+    $games = getAllGames(!$adult, $startAt, $perPage, 'id', 'asc', $categoryFilters, $platformFilters);
+} else {
+    $games = getAllGames(!$adult, $startAt, $perPage);
+}
+
+
 $platforms = getPlatforms();
 $categories = getCategories();
-// echo '<pre>';
-// print_r($platforms);
-// echo '<pre>';
+$allGames = getAllGames();
+$highlight = $allGames[array_rand($allGames)];
+$name = $highlight["name"];
+
 ?>
 
 <!DOCTYPE html>
@@ -28,54 +54,53 @@ $categories = getCategories();
 <body>
     <?php include("includes/header.inc.php"); ?>
     <main>
-        <?php
-        $highlight = $games[array_rand($games)];
-        $name = $highlight["name"];
-        ?>
-        <a href="details.php?id=<?= $highlight["id"] ?>">
-            <section id="game_highlight">
-
+        <section id="game_highlight">
+            <a href="details.php?id=<?= $highlight["id"] ?>">
                 <img src="<?= $highlight["image"] ?>" alt="image for highlighted game " .<?= $name ?> />
                 <div class="highlight-content">
                     <h2 class="highlight-title"><?= $name ?></h2>
                     <p class="highlight-description"><?= substr($highlight['description'], 0, 300) . '(...)'; ?></p>
                 </div>
-            </section>
-        </a>
-        <!-- Filters -->
-        <select name="sort" id="sort">
-            <option value="rating_desc">Highest rating</option>
-            <option value="rating_asc">Lowest rating</option>
-            <option value="release_desc">Newest</option>
-            <option value="release_asc">Oldest</option>
-            <option value="name_asc">A-Z</option>
-            <option value="name_desc">Z-A</option>
-        </select>
+            </a>
+        </section>
+
+
         <section id="game_section">
-
+            <!-- Filters -->
             <aside id="filters">
-                <form method="GET" action="#">
-                    <h2>Filters</h2>
-                    <a href="index.php">clear filters</a>
-                    <section id="filter">
+                <form method="POST" action="?filtered=true">
+                    <h2>Sort</h2>
+                    <select name="sort" id="sort">
+                        <option value="release_desc" <?= $_POST['sort'] == "release_desc" ? 'selected' : '' ?>>Newest</option>
+                        <option value="release_asc" <?= $_POST['sort'] == "release_asc" ? 'selected' : '' ?>>Oldest</option>
+                        <option value="rating_desc" <?= $_POST['sort'] == "rating_desc" ? 'selected' : '' ?>>Highest rating</option>
+                        <option value="rating_asc" <?= $_POST['sort'] == "rating_asc" ? 'selected' : '' ?>>Lowest rating</option>
+                        <option value="name_asc" <?= $_POST['sort'] == "name_asc" ? 'selected' : '' ?>>A-Z</option>
+                        <option value="name_desc" <?= $_POST['sort'] == "name_desc" ? 'selected' : '' ?>>Z-A</option>
+                    </select>
 
+                    <h2>Filters <span><a href="index.php">clear</a></span></h2>
+
+                    <section id="filter">
+                        <h3>Categories</h3>
                         <div>
-                            <h2>Categories</h2>
+
 
                             <?php foreach ($categories as $category):
                                 $name = $category['name']; ?>
                                 <div class="filter">
-                                    <input type="checkbox" name="categoryFilter[]" id="<?= $name ?>" value="<?= $name ?>">
+                                    <input type="checkbox" name="categoryFilter[]" id="categoryFilter_<?= $name ?>" value="<?= $category['id'] ?>" <?= isset($_POST['categoryFilter']) && in_array($category['id'], $_POST['categoryFilter']) ? 'checked' : '' ?>>
                                     <label for="<?= $name ?>"><?= $name ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </div>
+                        <h3>Platform</h3>
                         <div>
-                            <h2>Platform</h2>
+
                             <?php foreach ($platforms as $platform):
                                 $name = $platform['name']; ?>
                                 <div class="filter">
-                                    <input type="checkbox" name="platformFilter[]" id="<?= $name ?>" value="<?= $name ?>">
+                                    <input type="checkbox" name="platformFilter[]" id="platformFilter<?= $name ?>" value="<?= $platform['id'] ?>" <?= isset($_POST['platformFilter']) && in_array($platform['id'], $_POST['platformFilter']) ? 'checked' : '' ?>>
                                     <label for="<?= $name ?>"><?= $name ?></label>
                                 </div>
                             <?php endforeach; ?>
@@ -135,7 +160,21 @@ $categories = getCategories();
                             </div>
                         </a>
                     <?php endforeach; ?>
+
                 </section>
+                <div class="pagination">
+                    <span>
+                        <form action="index.php?page=<?= $page - 1 ?>" method="POST">
+                            <input type="hidden" name="postData" value="<?= htmlspecialchars(serialize($_POST)); ?>">
+                            <input type="submit" name="paginationSubmit" value="&lt; previous">
+                        </form>
+                    </span><span>
+                        <form action="index.php?page=<?= $page + 1 ?>" method="POST">
+                            <input type="hidden" name="postData" value="<?= htmlspecialchars(serialize($_POST)); ?>">
+                            <input type="submit" name="paginationSubmit" value="next &gt;">
+                        </form>
+                    </span>
+                </div>
         </section>
         </div>
 

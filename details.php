@@ -29,6 +29,7 @@ if (isset($id)) {
 <head>
     <link rel="icon" href="https://via.placeholder.com/70x70">
     <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
+    <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
 
     <meta charset="utf-8">
     <meta name="description" content="My description">
@@ -40,22 +41,25 @@ if (isset($id)) {
 <body>
     <?php include("includes/header.inc.php"); ?>
     <main>
-        <section class="gamedetails">
-            <div class="container">
-                <h1><?= $game['name']; ?></h2>
-                    <!-- <hr /> -->
+        <div class="gamedetails">
+            <h1><?= $game['name']; ?></h2>
+                <!-- <hr /> -->
 
-                    <div class="image"><img src="<?= $game['image'] ?>" alt=""><img></div>
-                    <p>Developed by: <?= $game['developer']; ?></p>
-                    <p>Published by: <?= $game['publisher']; ?></p>
-                    <p>Release date: <?= $release; ?></p>
+                <div class="image"><img src="<?= $game['image'] ?>" alt=""><img></div>
+                <div class="gamedetail">
 
+                    <p><span>Developed by:</span> <?= $game['developer']; ?></p>
+                    <p><span>Published by:</span> <?= $game['publisher']; ?></p>
+                    <p><span>Release date:</span> <?= $release; ?></p>
+                </div>
+                <div class="description">
                     <h4>About:</h4>
                     <p>
                         <?= $game['description']; ?>
                     </p>
+                </div>
 
-            </div>
+        </div>
         </section>
         <section class="reviews">
             <tbody>
