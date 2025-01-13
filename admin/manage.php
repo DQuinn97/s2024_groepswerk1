@@ -129,7 +129,7 @@ if (isset($_POST['formUpdate'])) {
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="inputAdmin" id="inputAdmin2" value="0" checked>
+                            <input class="form-check-input" type="radio" name="inputAdmin" id="inputAdmin2" value="0">
                             <label class="form-check-label" for="inputAdmin2">
                                 No
                             </label>
