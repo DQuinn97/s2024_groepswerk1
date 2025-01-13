@@ -192,7 +192,9 @@ $name = $highlight["name"];
                                     <!-- <p>Platforms: <?= $game_platforms ?></p> -->
                                     <div class="category_tags"><?= $game_categories ?></div>
                                 </div>
-                                <span class="list_icon"></span>
+
+                                <!-- <div class="list_icon"></div> -->
+
                             </div>
                         </a>
                     <?php endforeach; ?>

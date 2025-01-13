@@ -35,6 +35,11 @@ function getUserPlatforms(int $UUID): array|bool
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getUserLists(int $UUID): array|bool
+{
+    return false;
+}
+
 function getCategories(int $game_id = 0): array|bool
 {
     $sql = "SELECT categories.id, categories.name FROM categories";
