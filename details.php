@@ -58,20 +58,18 @@ if (isset($id)) {
                         <?= $game['description']; ?>
                     </p>
                 </div>
-
+                <tbody>
+                    <?php foreach ($ratings as $rating) { ?>
+                        <p>
+                            <tr>
+                                <td><?= $rating['displayname'] ?></td>
+                                <td>gave this game a rating of <?= $rating['rating'] ?>:</td>
+                                <td>"<?= $rating['review'] ?>"</td><br>
+                            </tr>
+                        </p>
+                    <?php } ?>
+                </tbody>
         </div>
-        </section>
-        <section class="reviews">
-            <tbody>
-                <?php foreach ($ratings as $rating) { ?>
-                    <tr>
-                        <td><?= $rating['displayname'] ?></td>
-                        <td>gave this game a rating of <?= $rating['rating'] ?>:</td>
-                        <td>"<?= $rating['review'] ?>"</td><br>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </section>
     </main>
     <?php include("includes/footer.inc.php"); ?>
 </body>
