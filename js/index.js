@@ -24,8 +24,6 @@ window.addEventListener("click", function (e) {
 modal_open.onclick = function () {
   modal.style.display = "block";
 };
-
-// When the user clicks on <span> (x), close the modal
 modal_close.onclick = function () {
   modal.style.display = "none";
 };

@@ -3,10 +3,6 @@ include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
 session_start();
 $UUID = @$_SESSION['UUID'];
 $adult = false;

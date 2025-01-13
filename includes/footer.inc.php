@@ -32,9 +32,5 @@
     <section>
         <p>&copy; SavePoint <?= date('Y') ?></p>
     </section>
-    <!-- <section>
-        <p>Stay in touch! Subscribe to our Newsletter!</p>
-        <form action=""><input type="text" name="sub_email" id="sub_email"><input type="submit" value="➼" id="sub_submit"></form>
-    </section> -->
 </footer>
 <script type="module" src="dist/<?= $jsPath ?>"></script>

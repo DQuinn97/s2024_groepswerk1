@@ -16,7 +16,6 @@
                 <li><a href="user_mylists.php">My Lists</a></li>
             <?php endif; ?>
         </ul>
-        <!-- <div id="notification"></div> -->
         <div id="profile">
             <section>
                 <ul>
