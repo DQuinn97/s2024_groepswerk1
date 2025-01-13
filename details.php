@@ -63,7 +63,7 @@ if (isset($id)) {
                     <tr>
                         <td><?= $rating['displayname'] ?></td>
                         <td>gave this game a rating of <?= $rating['rating'] ?>:</td>
-                        <td><i>"<?= $rating['review'] ?>"</i></td><br>
+                        <td>"<?= $rating['review'] ?>"</td><br>
                     </tr>
                 <?php } ?>
             </tbody>
