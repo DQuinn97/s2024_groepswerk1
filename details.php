@@ -8,15 +8,6 @@ $game = getGameById($id);
 $release = formatDateTime($game['release_date']);
 $ratings = getRatingsById($id);
 
-session_start();
-$UUID = @$_SESSION['UUID'];
-$adult = false;
-if ($UUID) $adult = checkAge($UUID);
-if ($game["ageRestricted"] && !$adult) {
-    header("Location: index.php");
-    exit;
-}
-
 if ($id === NULL) {
     header("Location: index.php");
     exit;
@@ -28,6 +19,7 @@ if (isset($id)) {
         exit;
     }
 }
+
 
 if (isset($_POST['lists'])) {
     [$action, $list] = explode('_', $_POST['lists']);
@@ -61,7 +53,6 @@ if (isset($_POST['lists'])) {
     <main>
         <div class="gamedetails">
             <h1><?= $game['name']; ?></h1>
-            <!-- <hr /> -->
             <form action="details.php?id=<?= $id ?>" method="POST">
 
                 <label for="lists">Add/Remove from list</label>
@@ -98,15 +89,6 @@ if (isset($_POST['lists'])) {
             </div>
 
         </div>
-        <tbody>
-            <?php foreach ($ratings as $rating) { ?>
-                <tr>
-                    <td>User <strong><?= $rating['displayname'] ?></strong></td>
-                    <td>gave this game a rating of <strong><?= $rating['rating'] ?></strong>:</td>
-                    <td><i>"<?= $rating['review'] ?>"</i></td><br>
-                </tr>
-            <?php } ?>
-        </tbody>
     </main>
     <?php include("includes/footer.inc.php"); ?>
 </body>

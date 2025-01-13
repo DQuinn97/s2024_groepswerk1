@@ -66,7 +66,7 @@ if (isset($_POST['formDelete'])) {
         </div>
         <form method="post" action="">
             <div>
-                <h1>Are you sure you want to delete user #<?= $user['id']; ?> - <?= $user['displayname']; ?>?<br>This action cannot be undone!</h1>
+                <h1>Are you sure you want to delete user #<?= $user['id']; ?> - <?= $user['email']; ?>?<br>This action cannot be undone!</h1>
                 <button type="submit" class="btn btn-danger" name="formDelete" style="width: 100%">Delete</button>
             </div>
         </form>

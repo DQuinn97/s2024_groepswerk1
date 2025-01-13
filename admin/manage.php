@@ -24,10 +24,6 @@ if (isset($_POST['formUpdate'])) {
     $status = $_POST['inputStatus'];
     $isAdmin = $_POST['inputAdmin'];
 
-    if (strlen($displayname) == 0) {
-        $errors[] = "Please enter a display name.";
-    }
-
     if (strlen($displayname) > 31) {
         $errors[] = "Display name is too long.";
     }
@@ -133,7 +129,7 @@ if (isset($_POST['formUpdate'])) {
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="inputAdmin" id="inputAdmin2" value="0" checked>
+                            <input class="form-check-input" type="radio" name="inputAdmin" id="inputAdmin2" value="0">
                             <label class="form-check-label" for="inputAdmin2">
                                 No
                             </label>

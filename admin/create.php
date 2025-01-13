@@ -27,10 +27,6 @@ if (isset($_POST['formSubmit'])) {
     $status = 1;
     $isAdmin = $_POST['inputAdmin'];
 
-    if (strlen($displayname) == 0) {
-        $errors[] = "Please enter a display name.";
-    }
-
     if (strlen($displayname) > 31) {
         $errors[] = "Display name is too long.";
     }
@@ -45,6 +41,10 @@ if (isset($_POST['formSubmit'])) {
 
     if (strlen($password) < 5) {
         $errors[] = "Password is too short.";
+    }
+
+    if (strlen($password) > 31) {
+        $errors[] = "Password is too long.";
     }
 
     if (strlen($dateofbirth) == 0) {

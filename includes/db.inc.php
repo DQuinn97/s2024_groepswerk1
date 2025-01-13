@@ -461,3 +461,17 @@ function removeGameFromList($game, $list): int
 
     return $deletedRows;
 }
+function insertRating(int $user_id, int $game_id, int $userRating, String $userReview): bool|int
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO ratings(user_id, game_id, rating, review) VALUES (:user_id, :game_id, :rating, :review)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'user_id' => $user_id,
+        'game_id' => $game_id,
+        'rating' => $userRating,
+        'review' => $userReview,
+    ]);
+
+    return $db->lastInsertId();
+}
