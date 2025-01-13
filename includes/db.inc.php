@@ -35,6 +35,45 @@ function getUserPlatforms(int $UUID): array|bool
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getGamesInList(int $id): array|bool
+{
+    $sql = "select * from lists JOIN game_in_list ON list_id = lists.id JOIN games on game_id = games.id  WHERE lists.id = :id";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':id' => $id]);
+
+    $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $games = array_map(function ($game): array {
+        $p = getPlatforms($game['id']);
+        $game['platforms'] = $p ?: [];
+
+        $c = getCategories($game['id']);
+        $game['categories'] = $c ?: [];
+
+        return $game;
+    }, $games);
+    return $games;
+}
+function getUserLists(int $UUID): array|bool
+{
+    $sql = "SELECT lists.* FROM lists WHERE user_id = :UUID";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':UUID' => $UUID]);
+    $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($lists as $id => $list) {
+        $lists[$id]["games"] = getGamesInList($list["id"]);
+    }
+
+    return $lists;
+}
+function getListById($id): array|bool
+{
+    $sql = "SELECT * FROM lists WHERE id=:id";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([':id' => $id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 function getCategories(int $game_id = 0): array|bool
 {
     $sql = "SELECT categories.id, categories.name FROM categories";
@@ -157,7 +196,7 @@ function getAllGamesCount(): int
     return $stmt->fetchColumn();
 }
 
-function insertGame(String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image, String $description, String $publisher, String $release_date): bool|int
+function insertGame(String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image = null, String $description = null, String $publisher = null, String $release_date = null): bool|int
 {
     $db = connectToDB();
     $sql = "INSERT INTO games(name, developer, ageRestricted, status, image, description, publisher, release_date) VALUES (:name, :developer, :ageRestricted, :status, :image, :description, :publisher, :release_date)";
@@ -176,7 +215,7 @@ function insertGame(String $name, String $developer, int $ageRestricted = 0, int
     return $db->lastInsertId();
 }
 
-function updateGame(int $id, String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image, String $description, String $publisher, String $release_date): bool|int
+function updateGame(int $id, String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image = null, String $description = null, String $publisher = null, String $release_date = null): bool|int
 {
     $db = connectToDB();
     $sql = "UPDATE games SET name=:name, developer=:developer, ageRestricted=:ageRestricted, status=:status, image=:image, description=:description, publisher=:publisher, release_date=:release_date WHERE id = :id";
@@ -344,4 +383,13 @@ function checkAge(int $UUID): bool
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([':UUID' => $UUID]);
     return $stmt->fetchColumn();
+}
+function createList($UUID, $name = null, $description = null): int|bool
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO lists(user_id, name, description) VALUES (:UUID, :name, :description)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([':UUID' => $UUID, ':name' => $name, ':description' => $description]);
+
+    return $db->lastInsertId();
 }

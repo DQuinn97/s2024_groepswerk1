@@ -274,7 +274,7 @@ body {
         #filter {
           > div:nth-of-type(1) {
             max-height: 500px;
-            overflow: scroll;
+            overflow-y: scroll;
           }
           .filter {
             display: block;
@@ -329,6 +329,22 @@ body {
             display: block;
           }
         }
+        /* .list_icon:before {
+          z-index: 5;
+          position: absolute;
+          top: 4px;
+          right: 15px;
+          width: 10px;
+          height: 10px;
+          font-family: "icomoon";
+          font-size: 2rem;
+          cursor: pointer;
+          padding-right: 0;
+          color: var(--white);
+          transition: color 0.2s ease 0.05s;
+          display: block;
+          content: "\e9bd";
+        } */
         .game_details {
           position: absolute;
           bottom: -100%;
@@ -354,14 +370,13 @@ body {
             }
           }
         }
-      }
-
-      .game_card img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        display: block;
-        border-radius: 8px;
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          display: block;
+          border-radius: 8px;
+        }
       }
     }
     .pagination {
@@ -419,6 +434,131 @@ body {
       div.image img {
         max-width: 70%;
         /* max-height: 400px; */
+      }
+    }
+    #list {
+      form {
+        display: flex;
+        flex-direction: column;
+        input[type="submit"] {
+          border-radius: 2rem;
+          padding: 0.5rem;
+          border: none;
+          font-size: 1.7rem;
+          background-color: var(--mediumpurple);
+          color: var(--white);
+          &:hover {
+            background-color: var(--dark);
+            color: var(--hover);
+            border: 2px;
+            border-color: var(--white);
+            &#profile_delete {
+              background-color: var(--error);
+            }
+          }
+        }
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      input,
+      textarea {
+        min-width: 200px;
+        width: 50%;
+        margin: 1rem 0;
+      }
+    }
+    #lists_container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      .addlist {
+        span {
+          font-size: 3rem;
+          text-align: center;
+          align-content: center;
+          color: var(--mediumpurple);
+          width: 100%;
+          background-color: #fff;
+          display: block;
+          height: 50px;
+          cursor: pointer;
+        }
+      }
+      .list {
+        width: 100%;
+
+        background-color: #fff;
+        display: block;
+        a {
+          text-decoration: none;
+          color: black;
+          &:visited {
+            color: black;
+          }
+          h2 {
+            font-size: 2rem;
+            padding: 1rem;
+            border-bottom: 1px solid black;
+            margin-bottom: 1rem;
+            span {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .list_container {
+          overflow-x: scroll;
+          display: flex;
+          gap: 1rem;
+          a {
+            .game_card {
+              position: relative;
+              overflow: hidden;
+              aspect-ratio: 2/1;
+              width: 200px;
+              .card_title {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: #251e4b5b;
+                border-radius: 1rem 1rem 1rem 1rem;
+                color: var(--white);
+                text-align: center;
+                font-size: 1.6rem;
+                font-weight: bold;
+                padding: 0.5rem 0;
+                z-index: 1;
+              }
+              /* .list_icon:before {
+                z-index: 5;
+                position: absolute;
+                top: 4px;
+                right: 15px;
+                width: 10px;
+                height: 10px;
+                font-family: "icomoon";
+                font-size: 2rem;
+                cursor: pointer;
+                padding-right: 0;
+                color: var(--white);
+                transition: color 0.2s ease 0.05s;
+                display: block;
+                content: "\e9bd";
+              } */
+              img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                display: block;
+                border-radius: 8px;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -506,6 +646,7 @@ body {
           }
         }
       }
+
       .profile_platforms {
         width: 160px;
         text-align: left;
@@ -543,7 +684,8 @@ body {
         text-align: center;
         padding: 1rem;
       }
-      .modal-cancel {
+      .modal-cancel,
+      .modal-confirm {
         padding: 0.5rem;
         border: none;
         font-size: 1.7rem;
@@ -558,7 +700,7 @@ body {
           border-color: var(--white);
         }
       }
-      .modal-confirm {
+      .modal-delete {
         padding: 0.5rem;
         border: none;
         font-size: 1.7rem;
@@ -570,6 +712,11 @@ body {
           color: var(--hover);
           border: 2px;
         }
+      }
+      .modal-input {
+        display: block;
+        width: 85%;
+        margin: 2rem;
       }
     }
   }

@@ -7,6 +7,10 @@ include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
 
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
 session_start();
 $UUID = @$_SESSION['UUID'];
 $adult = false;
@@ -29,7 +33,38 @@ if (isset($_POST['filterSubmit'])) {
     if (isset($_POST['categoryFilter'])) $categoryFilters = $_POST['categoryFilter'];
     $platformFilters = [];
     if (isset($_POST['platformFilter'])) $platformFilters = $_POST['platformFilter'];
-    $games = getAllGames(!$adult, $startAt, $perPage, 'id', 'asc', $categoryFilters, $platformFilters);
+    $sort = 'id';
+    $order = 'asc';
+
+    if (isset($_POST['sort'])) {
+        switch ($_POST['sort']) {
+            case 'release_desc':
+                $order = 'desc';
+                $sort = 'release_date';
+                break;
+            case 'release_asc':
+                $order = 'asc';
+                $sort = 'release_date';
+                break;
+            case 'name_desc':
+                $order = 'desc';
+                $sort = 'name';
+                break;
+            case 'name_asc':
+                $order = 'asc';
+                $sort = 'name';
+                break;
+            case 'rating_asc':
+                $order = 'asc';
+                $sort = 'rating';
+                break;
+            case 'rating_desc':
+                $order = 'desc';
+                $sort = 'rating';
+                break;
+        }
+    }
+    $games = getAllGames(!$adult, $startAt, $perPage, $sort, $order, $categoryFilters, $platformFilters);
 } else {
     $games = getAllGames(!$adult, $startAt, $perPage);
 }
@@ -72,7 +107,7 @@ $name = $highlight["name"];
         <section id="game_section">
             <!-- Filters -->
             <aside id="filters">
-                <form method="POST" action="?filtered=true">
+                <form method="POST" action="index.php?page=<?= $page ?>">
                     <h2>Sort</h2>
                     <select name="sort" id="sort">
                         <option value="release_desc" <?= $_POST['sort'] == "release_desc" ? 'selected' : '' ?>>Newest</option>
@@ -161,6 +196,9 @@ $name = $highlight["name"];
                                     <!-- <p>Platforms: <?= $game_platforms ?></p> -->
                                     <div class="category_tags"><?= $game_categories ?></div>
                                 </div>
+
+                                <!-- <div class="list_icon"></div> -->
+
                             </div>
                         </a>
                     <?php endforeach; ?>
