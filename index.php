@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
@@ -22,6 +19,8 @@ $startAt  = $perPage * ($page - 1);
 
 $totalGames = 0;
 $totalPages = 0;
+$sort = 'release_date';
+$order = 'desc';
 
 $games = [];
 if (isset($_POST['filterSubmit'])) {
@@ -29,8 +28,7 @@ if (isset($_POST['filterSubmit'])) {
     if (isset($_POST['categoryFilter'])) $categoryFilters = $_POST['categoryFilter'];
     $platformFilters = [];
     if (isset($_POST['platformFilter'])) $platformFilters = $_POST['platformFilter'];
-    $sort = 'id';
-    $order = 'asc';
+
 
     if (isset($_POST['sort'])) {
         switch ($_POST['sort']) {
@@ -66,7 +64,7 @@ if (isset($_POST['filterSubmit'])) {
 } else {
     $totalGames = getAllGamesCount(!$adult);
     $totalPages = ceil($totalGames / $perPage);
-    $games = getAllGames(!$adult, $startAt, $perPage);
+    $games = getAllGames(!$adult, $startAt, $perPage, $sort, $order);
 }
 
 
@@ -110,12 +108,12 @@ $name = $highlight["name"];
                 <form method="POST" action="index.php?page=<?= $page ?>">
                     <h2>Sort</h2>
                     <select name="sort" id="sort">
-                        <option value="release_desc" <?= $_POST['sort'] == "release_desc" ? 'selected' : '' ?>>Newest</option>
-                        <option value="release_asc" <?= $_POST['sort'] == "release_asc" ? 'selected' : '' ?>>Oldest</option>
-                        <option value="rating_desc" <?= $_POST['sort'] == "rating_desc" ? 'selected' : '' ?>>Highest rating</option>
-                        <option value="rating_asc" <?= $_POST['sort'] == "rating_asc" ? 'selected' : '' ?>>Lowest rating</option>
-                        <option value="name_asc" <?= $_POST['sort'] == "name_asc" ? 'selected' : '' ?>>A-Z</option>
-                        <option value="name_desc" <?= $_POST['sort'] == "name_desc" ? 'selected' : '' ?>>Z-A</option>
+                        <option value="release_desc" <?= @$_POST['sort'] == "release_desc" ? 'selected' : '' ?>>Newest</option>
+                        <option value="release_asc" <?= @$_POST['sort'] == "release_asc" ? 'selected' : '' ?>>Oldest</option>
+                        <option value="rating_desc" <?= @$_POST['sort'] == "rating_desc" ? 'selected' : '' ?>>Highest rating</option>
+                        <option value="rating_asc" <?= @$_POST['sort'] == "rating_asc" ? 'selected' : '' ?>>Lowest rating</option>
+                        <option value="name_asc" <?= @$_POST['sort'] == "name_asc" ? 'selected' : '' ?>>A-Z</option>
+                        <option value="name_desc" <?= @$_POST['sort'] == "name_desc" ? 'selected' : '' ?>>Z-A</option>
                     </select>
 
                     <h2>Filters <span><a href="index.php">clear</a></span></h2>

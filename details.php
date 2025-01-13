@@ -1,4 +1,5 @@
 <?php
+
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
 include_once "includes/css_js.inc.php";
@@ -7,6 +8,9 @@ $id = (int)@$_GET['id'];
 $game = getGameById($id);
 $release = formatDateTime($game['release_date']);
 $ratings = getRatingsById($id);
+
+session_start();
+$UUID = @$_SESSION['UUID'];
 
 if ($id === NULL) {
     header("Location: index.php");
@@ -60,7 +64,7 @@ if (isset($_POST['lists'])) {
                 $userlists = getUserLists($UUID);
                 if (!count($userlists)):
                 ?>
-                    <span>no lists currently available</span>
+                    <span id="forlists">no lists currently available</span>
                 <?php else: ?>
                     <select name="lists" id="lists" onchange="this.form.submit()">
                         <option disabled selected value>-- select list</option>
