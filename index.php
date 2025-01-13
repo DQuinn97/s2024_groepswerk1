@@ -10,7 +10,7 @@ include "includes/funcs.inc.php";
 session_start();
 $UUID = @$_SESSION['UUID'];
 $adult = false;
-if ($UUID) checkAge($UUID);
+if ($UUID) $adult = checkAge($UUID);
 
 if (isset($_POST['paginationSubmit'])) {
     $_POST = unserialize($_POST['postData']);

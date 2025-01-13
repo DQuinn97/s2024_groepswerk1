@@ -73,7 +73,32 @@ function getListById($id): array|bool
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+function updateList($id, $name, $description): int|bool
+{
+    $db = connectToDB();
+    $sql = "UPDATE lists SET name=:name, description=:description, updated=CURRENT_TIMESTAMP WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id,
+        'name' => $name,
+        'description' => $description
+    ]);
 
+    return $stmt->rowCount();
+}
+function deleteList($id): int
+{
+    $db = connectToDB();
+
+    $sql = "DELETE FROM lists WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'id' => $id
+    ]);
+    $deletedRows = $stmt->rowCount();
+
+    return $deletedRows;
+}
 function getCategories(int $game_id = 0): array|bool
 {
     $sql = "SELECT categories.id, categories.name FROM categories";
@@ -392,4 +417,26 @@ function createList($UUID, $name = null, $description = null): int|bool
     $stmt->execute([':UUID' => $UUID, ':name' => $name, ':description' => $description]);
 
     return $db->lastInsertId();
+}
+function addGameToList($game, $list): int|bool
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO game_in_list(game_id, list_id) VALUES (:game, :list);";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([':game' => $game, ':list' => $list]);
+    return $db->lastInsertId();
+}
+function removeGameFromList($game, $list): int
+{
+    $db = connectToDB();
+
+    $sql = "DELETE FROM game_in_list WHERE game_id = :game AND list_id= :list";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'game' => $game,
+        'list' => $list
+    ]);
+    $deletedRows = $stmt->rowCount();
+
+    return $deletedRows;
 }

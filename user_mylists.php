@@ -47,12 +47,32 @@ $userlists = getUserLists($UUID);
                 exit;
             }
             $games = getGamesInList($id);
+
+            if (isset($_POST['list_submit'])) {
+                if (strlen($_POST['list_name']) > 32) $errors[] = "List name cant be longer than 32 characters...";
+                if (strlen($_POST["list_desc"]) > 255) $errors[] = "Description cant be longer than 255 characters...";
+                if (!count($errors)) {
+                    $check = updateList($id, $_POST['list_name'], $_POST["list_desc"]);
+                    if (!$check) $errors[] = "Something went wrong...";
+                    $list = getListById($id);
+                }
+            }
+            if (isset($_POST['list_delete'])) {
+                deleteList($id);
+                header("Location: user_mylists.php");
+                exit;
+            }
+
         ?>
             <section id="list">
-                <form action="user_profiles.php?id=<?= $id ?>" method="POST">
+                <form action="user_mylists.php?id=<?= $id ?>" method="POST">
+                    <p>Warning: leaving the page without saving will discard any changes made!</p>
+                    <ul id="error_messages"><?php foreach ($errors as $error): ?><li><?= $error ?></li><?php endforeach; ?></ul>
+
                     <h2><label for="list_name">List:</label></h2><input type="text" name="list_name" id="list_name" value="<?= $list["name"] ?>"><br>
                     <h2><label for="list_desc">Description:</label></h2><textarea name="list_desc" id="list_desc"><?= $list["description"] ?></textarea>
                     <input type="submit" value="save" id="list_submit" name="list_submit">
+
                     <section id="game_list">
                         <?php foreach ($games as $game):
                             $name = $game["name"];
@@ -96,6 +116,7 @@ $userlists = getUserLists($UUID);
                         <?php endforeach; ?>
 
                     </section>
+                    <input type="submit" value="delete" id="list_delete" name="list_delete">
                 </form>
             </section>
         <?php else: ?>

@@ -19,6 +19,9 @@
   font-family: Inter;
   font-size: 1.2rem;
 }
+#error_messages {
+  background-color: var(--error);
+}
 body {
   min-height: 100vh;
   background-color: lightgray;
@@ -404,6 +407,28 @@ body {
     /* DETAIL PAGE */
     div.gamedetails {
       margin: 2rem 2rem;
+      form {
+        label {
+          font-size: 1.5rem;
+        }
+        select {
+          margin: 0;
+          margin-bottom: 2rem;
+          width: 100%;
+          option {
+            &.add {
+              background-color: lightgreen;
+            }
+            &.remove {
+              background-color: lightcoral;
+            }
+          }
+        }
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        gap: 1rem;
+      }
       h1 {
         font-size: 3rem;
         font-weight: 700;
@@ -441,18 +466,22 @@ body {
         display: flex;
         flex-direction: column;
         input[type="submit"] {
+          cursor: pointer;
           border-radius: 2rem;
           padding: 0.5rem;
           border: none;
           font-size: 1.7rem;
           background-color: var(--mediumpurple);
           color: var(--white);
+          &#list_delete {
+            background: var(--error-dark);
+          }
           &:hover {
             background-color: var(--dark);
             color: var(--hover);
             border: 2px;
             border-color: var(--white);
-            &#profile_delete {
+            &#list_delete {
               background-color: var(--error);
             }
           }
@@ -461,6 +490,11 @@ body {
       h2 {
         font-size: 2rem;
       }
+
+      p {
+        margin-bottom: 2rem;
+      }
+      #error_messages,
       input,
       textarea {
         min-width: 200px;
@@ -615,9 +649,7 @@ body {
         margin-bottom: 2rem;
         width: auto;
       }
-      #error_messages {
-        background-color: var(--error);
-      }
+
       input[type="text"],
       input[type="date"] {
         padding: 0.6rem;
@@ -796,6 +828,15 @@ body {
 
 /* MOBILE  */
 @media (max-width: 780px) {
+  body main {
+    #list {
+      input,
+      textarea {
+        width: 100%;
+        margin: 1rem 0;
+      }
+    }
+  }
   nav {
     .menu-icon-container {
       display: flex;
