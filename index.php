@@ -20,8 +20,8 @@ $perPage = 20;
 $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 $startAt  = $perPage * ($page - 1);
 
-$totalGames = getAllGamesCount();
-$totalPages = ceil($totalGames / $perPage);
+$totalGames = 0;
+$totalPages = 0;
 
 $games = [];
 if (isset($_POST['filterSubmit'])) {
@@ -60,15 +60,19 @@ if (isset($_POST['filterSubmit'])) {
                 break;
         }
     }
+    $totalGames = getAllGamesCount(!$adult, $sort, $order, $categoryFilters, $platformFilters);
+    $totalPages = ceil($totalGames / $perPage);
     $games = getAllGames(!$adult, $startAt, $perPage, $sort, $order, $categoryFilters, $platformFilters);
 } else {
+    $totalGames = getAllGamesCount(!$adult);
+    $totalPages = ceil($totalGames / $perPage);
     $games = getAllGames(!$adult, $startAt, $perPage);
 }
 
 
 $platforms = getPlatforms();
 $categories = getCategories();
-$allGames = getAllGames();
+$allGames = getAllGames(!$adult);
 $highlight = $allGames[array_rand($allGames)];
 $name = $highlight["name"];
 
@@ -157,11 +161,6 @@ $name = $highlight["name"];
                     <?php foreach ($games as $game):
                         $name = $game["name"];
                         $releaseDate = substr($game["release_date"], 0, 4);
-                        /*
-                        $game_platforms = join(', ', array_map(function ($g) {
-                            return $g["name"];
-                        }, $game["platforms"]));
-*/
                         $game_categories = array_map(function ($g) {
                             return $g["name"];
                         }, $game["categories"]);
@@ -189,11 +188,9 @@ $name = $highlight["name"];
                                 <div class="card_title"><?= $name; ?></div>
                                 <div class="game_details">
                                     <p>Release Year: <?= $releaseDate; ?></p>
-                                    <!-- <p>Platforms: <?= $game_platforms ?></p> -->
                                     <div class="category_tags"><?= $game_categories ?></div>
                                 </div>
 
-                                <!-- <div class="list_icon"></div> -->
 
                             </div>
                         </a>
@@ -201,17 +198,22 @@ $name = $highlight["name"];
 
                 </section>
                 <div class="pagination">
-                    <span>
+
+                    <span class=".prev" style="<?php if ($page === 1) echo 'display:none;' ?>">
                         <form action="index.php?page=<?= $page - 1 ?>" method="POST">
                             <input type="hidden" name="postData" value="<?= htmlspecialchars(serialize($_POST)); ?>">
                             <input type="submit" name="paginationSubmit" value="&lt; previous">
                         </form>
-                    </span><span>
+                    </span>
+
+
+                    <span class=".next" style="<?php if ($page >= $totalPages) echo 'display:none;' ?>">
                         <form action="index.php?page=<?= $page + 1 ?>" method="POST">
                             <input type="hidden" name="postData" value="<?= htmlspecialchars(serialize($_POST)); ?>">
                             <input type="submit" name="paginationSubmit" value="next &gt;">
                         </form>
                     </span>
+
                 </div>
         </section>
         </div>

@@ -187,7 +187,6 @@ function getAllGames(bool $ageRestrict = null, int $startAt = null, int $perPage
         }
     }
     $sql = "SELECT * FROM " . $target . " AS games";
-    print_r($sql);
 
     if ($ageRestrict == true) {
         $sql .= " WHERE ageRestricted = false";
@@ -213,12 +212,34 @@ function getAllGames(bool $ageRestrict = null, int $startAt = null, int $perPage
 
     return $games;
 }
-function getAllGamesCount(): int
+function getAllGamesCount(bool $ageRestrict = null, String $sort = "id", String $order = "ASC", array $categoryfilters = [], array $platformfilters = []): int
 {
-    $sql = "SELECT COUNT(*) as total FROM games";
+    $target = "games";
+
+    if (count($categoryfilters) || count($platformfilters)) {
+        if (count($categoryfilters) && !count($platformfilters)) {
+            $categoryfilter = join(',', $categoryfilters);
+            $target = "(SELECT games.* FROM games JOIN game_in_category ON game_id = games.id AND category_id IN (" . $categoryfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($categoryfilters) . ")";
+        } elseif (!count($categoryfilters) && count($platformfilters)) {
+            $platformfilter = join(',', $platformfilters);
+            $target = "(SELECT games.* FROM games JOIN game_on_platform ON game_id = games.id AND platform_id IN (" . $platformfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($platformfilters) . ")";
+        } else {
+            $categoryfilter = join(',', $categoryfilters);
+            $platformfilter = join(',', $platformfilters);
+            $target = "(SELECT games.* FROM (SELECT games.* FROM games JOIN game_in_category ON game_id = games.id AND category_id IN (" . $categoryfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($categoryfilters) . ") AS games JOIN game_on_platform ON game_id = games.id AND platform_id IN (" . $platformfilter . ") GROUP BY games.id HAVING COUNT(*)=" . count($platformfilters) . ")";
+        }
+    }
+    $sql = "SELECT COUNT(*) FROM " . $target . " AS games";
+
+    if ($ageRestrict == true) {
+        $sql .= " WHERE ageRestricted = false";
+    }
+    $sql .= " ORDER BY " . $sort . " " . $order;
+
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchColumn();
+    $games = $stmt->fetchColumn();
+    return $games;
 }
 
 function insertGame(String $name, String $developer, int $ageRestricted = 0, int $status = 1, String $image = null, String $description = null, String $publisher = null, String $release_date = null): bool|int
