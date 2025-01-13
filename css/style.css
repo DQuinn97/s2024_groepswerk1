@@ -436,6 +436,38 @@ body {
         /* max-height: 400px; */
       }
     }
+    #list {
+      form {
+        display: flex;
+        flex-direction: column;
+        input[type="submit"] {
+          border-radius: 2rem;
+          padding: 0.5rem;
+          border: none;
+          font-size: 1.7rem;
+          background-color: var(--mediumpurple);
+          color: var(--white);
+          &:hover {
+            background-color: var(--dark);
+            color: var(--hover);
+            border: 2px;
+            border-color: var(--white);
+            &#profile_delete {
+              background-color: var(--error);
+            }
+          }
+        }
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      input,
+      textarea {
+        min-width: 200px;
+        width: 50%;
+        margin: 1rem 0;
+      }
+    }
     #lists_container {
       width: 100%;
       display: flex;
@@ -460,11 +492,21 @@ body {
 
         background-color: #fff;
         display: block;
-        h2 {
-          font-size: 2rem;
-          padding: 1rem;
-          border-bottom: 1px solid black;
-          margin-bottom: 1rem;
+        a {
+          text-decoration: none;
+          color: black;
+          &:visited {
+            color: black;
+          }
+          h2 {
+            font-size: 2rem;
+            padding: 1rem;
+            border-bottom: 1px solid black;
+            margin-bottom: 1rem;
+            span {
+              font-size: 1rem;
+            }
+          }
         }
 
         .list_container {
@@ -476,6 +518,7 @@ body {
               position: relative;
               overflow: hidden;
               aspect-ratio: 2/1;
+              width: 200px;
               .card_title {
                 position: absolute;
                 top: 0;
@@ -489,12 +532,6 @@ body {
                 font-weight: bold;
                 padding: 0.5rem 0;
                 z-index: 1;
-              }
-              &:hover {
-                transform: scale(1.1);
-                .game_details {
-                  display: block;
-                }
               }
               /* .list_icon:before {
                 z-index: 5;
@@ -512,31 +549,6 @@ body {
                 display: block;
                 content: "\e9bd";
               } */
-              .game_details {
-                position: absolute;
-                bottom: -100%;
-                left: 0;
-                width: 100%;
-                background: rgba(97, 57, 112, 0.466);
-                color: var(--white);
-                text-align: center;
-                font-size: 1.2rem;
-                padding: 1rem;
-                .category_tags {
-                  margin-top: 1rem;
-                  display: flex;
-                  gap: 0.5rem;
-                  justify-content: center;
-                  width: 100%;
-                  .category_tag {
-                    background-color: var(--mediumpurple);
-                    border: 1px solid var(--dark);
-                    padding: 0.5rem;
-                    border-radius: 1rem;
-                    height: fit-content;
-                  }
-                }
-              }
               img {
                 object-fit: cover;
                 width: 100%;
@@ -634,6 +646,7 @@ body {
           }
         }
       }
+
       .profile_platforms {
         width: 160px;
         text-align: left;
@@ -671,7 +684,8 @@ body {
         text-align: center;
         padding: 1rem;
       }
-      .modal-cancel {
+      .modal-cancel,
+      .modal-confirm {
         padding: 0.5rem;
         border: none;
         font-size: 1.7rem;
@@ -686,7 +700,7 @@ body {
           border-color: var(--white);
         }
       }
-      .modal-confirm {
+      .modal-delete {
         padding: 0.5rem;
         border: none;
         font-size: 1.7rem;
@@ -698,6 +712,11 @@ body {
           color: var(--hover);
           border: 2px;
         }
+      }
+      .modal-input {
+        display: block;
+        width: 85%;
+        margin: 2rem;
       }
     }
   }

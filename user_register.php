@@ -33,10 +33,6 @@ if (isset($_POST['register_submit'])) {
     }
 }
 
-
-// echo '<pre>';
-// print_r($cssPath);
-// echo '<pre>';
 ?>
 
 <!DOCTYPE html>

@@ -3,6 +3,7 @@ import "../css/style.css";
 let modal = document.getElementById("modal");
 let modal_open = document.getElementById("open_modal");
 let modal_close = document.getElementById("close_modal");
+let modal_input = document.getElementById("modal_input");
 
 document.getElementById("profile").onclick = (e) => {
   let target = e.target.querySelector("section");

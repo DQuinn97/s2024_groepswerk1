@@ -118,9 +118,10 @@ if (isset($_POST["profile_submit"])) {
             <form action="user_profile.php" method="POST" class="modal-content">
                 <input type="hidden" name="UUID" value="<?= $UUID ?>">
                 <p>Confirm deletion of profile:</p>
-                <input type="submit" value="DELETE" name="profile_delete" id="profile_delete" class="modal-confirm">
+                <input type="submit" value="DELETE" name="profile_delete" id="profile_delete" class="modal-delete">
                 <input type="button" value="cancel" name="close_modal" id="close_modal" class="modal-cancel">
             </form>
+
         </section>
     </main>
     <?php include("includes/footer.inc.php"); ?>
