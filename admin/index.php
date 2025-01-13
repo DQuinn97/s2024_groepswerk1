@@ -23,7 +23,7 @@ requiredAdmin();
         <main>
             <a href="../index.php"><button type="button" class="btn btn-primary">Return</button></a>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="users.php"><button type="button" class="btn btn-primary btn-lg">User Management</button></a><a href="games.php"><button type="button" class="btn btn-primary btn-lg">Game Management</button></a>
+                <a href="users.php"><button type="button" class="btn btn-outline-primary btn-lg">User Management</button></a><a href="games.php"><button type="button" class="btn btn-outline-primary btn-lg">Game Management</button></a>
             </div>
         </main>
     </div>
