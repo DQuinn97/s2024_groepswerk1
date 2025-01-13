@@ -24,10 +24,6 @@ if (isset($_POST['formUpdate'])) {
     $status = $_POST['inputStatus'];
     $isAdmin = $_POST['inputAdmin'];
 
-    if (strlen($displayname) == 0) {
-        $errors[] = "Please enter a display name.";
-    }
-
     if (strlen($displayname) > 31) {
         $errors[] = "Display name is too long.";
     }
