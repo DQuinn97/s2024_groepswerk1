@@ -48,14 +48,14 @@ if (isset($_POST['filterSubmit'])) {
                 $order = 'asc';
                 $sort = 'name';
                 break;
-            case 'rating_asc':
-                $order = 'asc';
-                $sort = 'rating';
-                break;
-            case 'rating_desc':
-                $order = 'desc';
-                $sort = 'rating';
-                break;
+                // case 'rating_asc': // rating not implemented, possibly will later
+                //     $order = 'asc';
+                //     $sort = 'rating';
+                //     break;
+                // case 'rating_desc':
+                //     $order = 'desc';
+                //     $sort = 'rating';
+                //     break;
         }
     }
     $totalGames = getAllGamesCount(!$adult, $sort, $order, $categoryFilters, $platformFilters);
@@ -83,7 +83,13 @@ $name = $highlight["name"];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SavePoint is a gaming database where you can save games in personalized lists.">
+    <meta name="canonical" href="index.php">
+    <meta property="og:title" content="SavePoint - THE Gaming Database">
+    <meta property="og:url" content="index.php">
+    <meta property="og:description" content="SavePoint is a gaming database where you can save games in personalized lists.">
     <title>SavePoint - Homepage</title>
+    <link rel="icon" src="images/logo70px.webp">
     <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
     <script type="module" src="./dist/<?= $jsPath ?>"></script>
 </head>
@@ -110,8 +116,8 @@ $name = $highlight["name"];
                     <select name="sort" id="sort">
                         <option value="release_desc" <?= @$_POST['sort'] == "release_desc" ? 'selected' : '' ?>>Newest</option>
                         <option value="release_asc" <?= @$_POST['sort'] == "release_asc" ? 'selected' : '' ?>>Oldest</option>
-                        <option value="rating_desc" <?= @$_POST['sort'] == "rating_desc" ? 'selected' : '' ?>>Highest rating</option>
-                        <option value="rating_asc" <?= @$_POST['sort'] == "rating_asc" ? 'selected' : '' ?>>Lowest rating</option>
+                        <!-- <option value="rating_desc" <?= @$_POST['sort'] == "rating_desc" ? 'selected' : '' ?>>Highest rating</option>
+                        <option value="rating_asc" <?= @$_POST['sort'] == "rating_asc" ? 'selected' : '' ?>>Lowest rating</option> -->
                         <option value="name_asc" <?= @$_POST['sort'] == "name_asc" ? 'selected' : '' ?>>A-Z</option>
                         <option value="name_desc" <?= @$_POST['sort'] == "name_desc" ? 'selected' : '' ?>>Z-A</option>
                     </select>

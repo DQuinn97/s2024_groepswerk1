@@ -3,9 +3,7 @@
 include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+
 
 requiredLoggedOut();
 $errors = [];
@@ -42,7 +40,9 @@ if (isset($_POST['register_submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SavePoint Register</title>
+    <meta name="description" content="SavePoint is a gaming database where you can save games in personalized lists. Register now!">
+    <link rel="icon" src="images/logo70px.webp">
+    <title>SavePoint - Register</title>
     <link rel="stylesheet" href="dist/<?= $cssPath ?>" />
 
 </head>

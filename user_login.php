@@ -3,9 +3,6 @@
 include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
 
 requiredLoggedOut();
 $errors = [];
@@ -15,9 +12,7 @@ if (isset($_POST['login_submit'])) {
     if (!strlen($_POST['login_password'])) $errors[] = "Please enter password...";
 
     $UUID = checkUser($_POST['login_email'], $_POST['login_password']);
-    echo '<pre>';
-    print_r(md5($_POST['login_password']));
-    echo '</pre>';
+
     if ($UUID) {
         logIn($UUID);
         $_SESSION['messages'][] = ['type' => 'log', 'content' => 'logged in on ' . date("d-m-Y")];
@@ -38,7 +33,9 @@ if (isset($_POST['login_submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SavePoint Login</title>
+    <meta name="description" content="SavePoint is a gaming database where you can save games in personalized lists. Log in here.">
+    <link rel="icon" src="images/logo70px.webp">
+    <title>SavePoint - Login</title>
     <link rel="stylesheet" href="dist/<?= $cssPath ?>" />
 </head>
 

@@ -3,9 +3,7 @@
 include_once "includes/css_js.inc.php";
 include "includes/db.inc.php";
 include "includes/funcs.inc.php";
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+
 
 
 requiredLoggedIn();
@@ -22,10 +20,6 @@ $user["platforms"] = array_map(function ($p) {
 $profile_displayname = "";
 $profile_dob = "";
 $profile_platforms = [];
-
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
 
 if (isset($_POST["profile_submit"])) {
     $profile_displayname = $_POST["profile_displayname"];
@@ -81,7 +75,8 @@ if (isset($_POST["profile_submit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SavePoint Profile</title>
+    <title>SavePoint - Profile</title>
+    <link rel="icon" src="images/logo70px.webp">
     <link rel="stylesheet" href="dist/<?= $cssPath ?>" />
 </head>
 

@@ -29,6 +29,7 @@ $userlists = getUserLists($UUID);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SavePoint - My Lists</title>
+    <link rel="icon" src="images/logo70px.webp">
     <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
     <script type="module" src="./dist/<?= $jsPath ?>"></script>
 </head>

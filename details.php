@@ -46,9 +46,9 @@ if (isset($_POST['lists'])) {
     <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
 
     <meta charset="utf-8">
-    <meta name="description" content="My description">
+    <meta name="description" content="SavePoint is a gaming database where you can save games in your own personalized lists. This page is a detail page for a specific game.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" src="images/logo70px.webp">
     <title><?= $game['name'] ?> - SavePoint</title>
 </head>
 
@@ -69,7 +69,6 @@ if (isset($_POST['lists'])) {
                     <select name="lists" id="lists" onchange="this.form.submit()">
                         <option disabled selected value>-- select list</option>
                         <?php foreach ($userlists as $list):
-                            print_r($list);
                             $action = !in_array($id, array_map(function ($g) {
                                 return $g["id"];
                             }, $list["games"])) ? "add" : "remove"; ?>
