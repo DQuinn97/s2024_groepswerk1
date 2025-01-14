@@ -231,7 +231,7 @@ function getAllGamesCount(bool $ageRestrict = null, String $sort = "id", String 
     }
     $sql = "SELECT COUNT(*) FROM " . $target . " AS games";
 
-    if ($ageRestrict == true) {
+    if ($ageRestrict == false) {
         $sql .= " WHERE ageRestricted = false";
     }
     $sql .= " ORDER BY " . $sort . " " . $order;
