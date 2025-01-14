@@ -111,7 +111,7 @@ $name = $highlight["name"];
         <section id="game_section">
             <!-- Filters -->
             <aside id="filters">
-                <form method="POST" action="index.php?page=<?= $page ?>">
+                <form method="POST" action="index.php?page=1">
                     <h2>Sort</h2>
                     <select name="sort" id="sort">
                         <option value="release_desc" <?= @$_POST['sort'] == "release_desc" ? 'selected' : '' ?>>Newest</option>

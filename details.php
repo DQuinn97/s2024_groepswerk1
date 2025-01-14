@@ -58,24 +58,25 @@ if (isset($_POST['lists'])) {
         <div class="gamedetails">
             <h1><?= $game['name']; ?></h1>
             <form action="details.php?id=<?= $id ?>" method="POST">
-
-                <label for="lists">Add/Remove from list</label>
-                <?php
-                $userlists = getUserLists($UUID);
-                if (!count($userlists)):
-                ?>
-                    <span id="forlists">no lists currently available</span>
-                <?php else: ?>
-                    <select name="lists" id="lists" onchange="this.form.submit()">
-                        <option disabled selected value>-- select list</option>
-                        <?php foreach ($userlists as $list):
-                            $action = !in_array($id, array_map(function ($g) {
-                                return $g["id"];
-                            }, $list["games"])) ? "add" : "remove"; ?>
-                            <option class="<?= $action ?>" value="<?= $action ?>_<?= $list["id"] ?>"><?= $list["name"] ?: 'Unnamed list' ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                <?php endif; ?>
+                <?php if ($UUID !== null): ?>
+                    <label for="lists">Add/Remove from list</label>
+                    <?php
+                    $userlists = getUserLists($UUID);
+                    if (!count($userlists)):
+                    ?>
+                        <span id="forlists">no lists currently available</span>
+                    <?php else: ?>
+                        <select name="lists" id="lists" onchange="this.form.submit()">
+                            <option disabled selected value>-- select list</option>
+                            <?php foreach ($userlists as $list):
+                                $action = !in_array($id, array_map(function ($g) {
+                                    return $g["id"];
+                                }, $list["games"])) ? "add" : "remove"; ?>
+                                <option class="<?= $action ?>" value="<?= $action ?>_<?= $list["id"] ?>"><?= $list["name"] ?: 'Unnamed list' ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                <?php endif;
+                endif; ?>
             </form>
             <div class="image"><img src="<?= $game['image'] ?>" alt=""><img></div>
             <div class="gamedetail">
