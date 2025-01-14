@@ -429,7 +429,6 @@ function checkAge(int $UUID): bool
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([':UUID' => $UUID]);
     $col = $stmt->fetch(PDO::FETCH_ASSOC);
-    print_r($col);
     return count($col) > 0;
 }
 function createList($UUID, $name = null, $description = null): int|bool
