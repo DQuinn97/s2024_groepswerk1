@@ -188,8 +188,8 @@ function getAllGames(bool $ageRestrict = null, int $startAt = null, int $perPage
     }
     $sql = "SELECT * FROM " . $target . " AS games";
 
-    if ($ageRestrict == true) {
-        $sql .= " WHERE ageRestricted = $ageRestrict";
+    if ($ageRestrict == false) {
+        $sql .= " WHERE ageRestricted = false";
     }
     $sql .= " ORDER BY " . $sort . " " . $order;
     if ($startAt !== null) {
@@ -428,7 +428,9 @@ function checkAge(int $UUID): bool
     $sql = "SELECT id FROM users WHERE id = :UUID AND TIMESTAMPDIFF(YEAR, dateofbirth, NOW()) > 18";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([':UUID' => $UUID]);
-    return $stmt->fetchColumn();
+    $col = $stmt->fetch(PDO::FETCH_ASSOC);
+    print_r($col);
+    return count($col) > 0;
 }
 function createList($UUID, $name = null, $description = null): int|bool
 {

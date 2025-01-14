@@ -58,13 +58,13 @@ if (isset($_POST['filterSubmit'])) {
                 //     break;
         }
     }
-    $totalGames = getAllGamesCount(!$adult, $sort, $order, $categoryFilters, $platformFilters);
+    $totalGames = getAllGamesCount($adult, $sort, $order, $categoryFilters, $platformFilters);
     $totalPages = ceil($totalGames / $perPage);
-    $games = getAllGames(!$adult, $startAt, $perPage, $sort, $order, $categoryFilters, $platformFilters);
+    $games = getAllGames($adult, $startAt, $perPage, $sort, $order, $categoryFilters, $platformFilters);
 } else {
-    $totalGames = getAllGamesCount(!$adult);
+    $totalGames = getAllGamesCount($adult);
     $totalPages = ceil($totalGames / $perPage);
-    $games = getAllGames(!$adult, $startAt, $perPage, $sort, $order);
+    $games = getAllGames($adult, $startAt, $perPage, $sort, $order);
 }
 
 
