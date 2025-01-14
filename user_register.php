@@ -15,7 +15,7 @@ if (isset($_POST['register_submit'])) {
     elseif (!filter_var($_POST['register_email'], FILTER_VALIDATE_EMAIL)) $errors[] = "Please enter a valid email address...";
     elseif (checkEmail($_POST['register_email'])) $errors[] = "Email already exists, try logging in instead...";
     if (!strlen($_POST['register_password'])) $errors[] = "Please enter a password...";
-    elseif (!passRegex($_POST['register_password']) && strlen($_POST['register_password']) > 45) $errors[] = "Please enter a valid, secure password...";
+    elseif (!passRegex($_POST['register_password']) || strlen($_POST['register_password']) > 45) $errors[] = "Please enter a valid, secure password...";
     elseif (!strlen($_POST['register_password_confirm']) && $_POST['register_password'] !== $_POST['register_password_confirm']) $errors[] = "Please confirm password...";
 
     if (!count($errors)) {
